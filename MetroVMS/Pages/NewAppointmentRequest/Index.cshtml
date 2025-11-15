@@ -1,0 +1,55 @@
+﻿@page
+@model MetroVMS.Pages.NewAppointmentRequest.IndexModel
+@{
+    ViewData["Title"] = "Appointment Requests";
+}
+
+
+<div class="card mb-5 mb-xl-10">
+    <div class="card-header d-flex justify-content-between align-items-center border-bottom">
+        <h3 class="fw-bold m-0 text-primary">Appointment Requests</h3>
+        <a href="/NewAppointmentRequest/Manage" class="btn btn-sm btn-success">
+            <i class="fas fa-plus-circle me-1"></i> New Appointment
+        </a>
+    </div>
+
+    <div class="card-body">
+        <!-- 🔍 Filter Section -->
+        <form id="filterForm" method="get" class="row mb-4">
+            <div class="col-md-3">
+                <label class="form-label fw-semibold">Appointment Type</label>
+                <select name="AppointmentType" class="form-select form-select-sm">
+                    <option value="">All</option>
+                    <option>Consultation</option>
+                    <option>Follow-up</option>
+                    <option>Official Meeting</option>
+                    <option>Interview</option>
+                    <option>Other</option>
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label fw-semibold">Date</label>
+                <input type="date" name="Date" class="form-control form-control-sm" />
+            </div>
+
+            <div class="col-md-3 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary btn-sm w-50">Search</button>
+            </div>
+        </form>
+
+        <!-- 📋 Appointment List -->
+        <div id="appointmentList">
+            @await Html.PartialAsync("_IndexPartial")
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+    $("#filterForm").on("submit", function (e) {
+        e.preventDefault();
+        alert("Filter applied — backend binding to be implemented.");
+    });
+</script>
+}

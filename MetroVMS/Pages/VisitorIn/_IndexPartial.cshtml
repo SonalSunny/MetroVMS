@@ -1,0 +1,172 @@
+﻿@* <div class="table-responsive">
+    <table class="table table-striped table-bordered align-middle">
+        <thead class="table-light">
+            <tr class="fw-semibold text-uppercase text-gray-600">
+                <th width="5%">#</th>
+                <th>Visitor No</th>
+                <th>Visitor Name</th>
+                <th>Company Name</th>
+                <th>Mobile No</th>
+                <th>Purpose of Visit</th>
+                <th>Department</th>
+                <th>Person to Visit</th>
+                <th>Companions</th>
+                <th>In Time</th>
+                <th>Out Time</th>
+                <th width="12%">Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>VST-0001</td>
+                <td>John Doe</td>
+                <td>ABC Trading Co.</td>
+                <td>+965 9999 8888</td>
+                <td>Business Meeting</td>
+                <td>Finance</td>
+                <td>Mr. Ahmed Ali</td>
+                <td>2</td>
+                <td>09:15 AM</td>
+                <td>11:00 AM</td>
+                <td>
+                    <div class="btn-group">
+                        <a href="/VisitorIn/Details/1" class="btn btn-sm btn-info text-white">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                        <a href="/VisitorIn/Manage?id=1" class="btn btn-sm btn-warning text-white">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <button type="button" class="btn btn-sm btn-danger">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>2</td>
+                <td>VST-0002</td>
+                <td>Sarah Williams</td>
+                <td>XYZ Logistics</td>
+                <td>+965 8888 7777</td>
+                <td>Delivery</td>
+                <td>Operations</td>
+                <td>Mr. Jacob</td>
+                <td>0</td>
+                <td>10:05 AM</td>
+                <td>10:45 AM</td>
+                <td>
+                    <div class="btn-group">
+                        <a href="/VisitorIn/Details/2" class="btn btn-sm btn-info text-white">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                        <a href="/VisitorIn/Manage?id=2" class="btn btn-sm btn-warning text-white">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <button type="button" class="btn btn-sm btn-danger">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>3</td>
+                <td>VST-0003</td>
+                <td>Mohammad Ali</td>
+                <td>Global Tech Solutions</td>
+                <td>+965 7777 6666</td>
+                <td>Maintenance</td>
+                <td>IT</td>
+                <td>Mr. Yusuf Khan</td>
+                <td>1</td>
+                <td>08:45 AM</td>
+                <td>10:00 AM</td>
+                <td>
+                    <div class="btn-group">
+                        <a href="/VisitorIn/Details/3" class="btn btn-sm btn-info text-white">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                        <a href="/VisitorIn/Manage?id=3" class="btn btn-sm btn-warning text-white">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <button type="button" class="btn btn-sm btn-danger">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div> *@
+<div class="table-responsive">
+  @*   <table class="table table-striped table-bordered align-middle"> *@
+    <table class="table table-hover table-rounded table-striped border gy-4 gs-7 table-sortable table-scroll">
+     @*    <thead class="table-light"> *@
+         <thead>
+           @*  <tr class="fw-semibold  text-gray-600"> *@
+              <tr>
+                <th>Visitor No</th>
+                <th>Visitor Name</th>
+                <th>Company Name</th>
+                <th>Mobile No</th>
+                <th>Purpose of Visit</th>
+                <th>Department</th>
+                <th>Person to Visit</th>
+                <th>Companions</th>
+                <th>In Time</th>
+                <th>Out Time</th>
+                <th width="12%">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                
+                <td>001</td>
+                <td>Anu</td>
+                <td>ABC Corp</td>
+                <td>9876543210</td>
+                <td>Meeting</td>
+                <td>HR</td>
+                <td>Mr.Arun</td>
+                <td>2</td>
+                <td>09:15 AM</td>
+                <td></td>
+                <td>
+                    <div class="btn-group">
+
+                        <button class="btn btn-sm btn-danger btn-quickout">
+                            <i class="fas fa-sign-out-alt"></i> Mark Out
+                        </button>
+
+                     @*    <button class="btn btn-sm btn-info text-white"><i class="fas fa-eye"></i></button>
+                        <button class="btn btn-sm btn-warning text-white"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-sm btn-danger btn-delete"><i class="fas fa-trash-alt"></i></button> *@
+                    </div>
+                </td>
+            </tr>
+            <tr>
+              
+                <td>002</td>
+                <td>Paul</td>
+                <td>XYZ Logistics</td>
+                <td>9876500011</td>
+                <td>Delivery</td>
+                <td>Operations</td>
+                <td>Mr. Ali</td>
+                <td>0</td>
+                <td>10:00 AM</td>
+                <td></td>
+                <td>
+                    <div class="btn-group">
+                        <button class="btn btn-sm btn-danger btn-quickout">
+                            <i class="fas fa-sign-out-alt"></i> Mark Out
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

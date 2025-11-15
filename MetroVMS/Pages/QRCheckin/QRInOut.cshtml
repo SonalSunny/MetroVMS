@@ -1,0 +1,165 @@
+﻿@page
+@model MetroVMS.Pages.QRCheckin.QRInOutModel
+@{
+    ViewData["Title"] = "QR Access - Metro VMS";
+}
+
+
+<div class="d-flex flex-column justify-content-center align-items-center vh-100 bg-light">
+    <!-- Logo Section -->
+    <div class="text-center mb-4">
+        <img src="~/media/logos/mlogo.svg"  alt="Metro Medical Group Logo" width="180" class="mb-2" />
+        <h4 class="fw-bold text-primary">Metro Medical Group</h4>
+        <p class="text-muted small mb-0">Visitor & Staff Movement System</p>
+    </div>
+
+    <!-- Main Card -->
+    <div class="card shadow-lg p-4" style="max-width: 420px; width: 100%; border-radius: 1rem;">
+        <h5 class="fw-bold text-center text-dark mb-4">QR Access Authentication</h5>
+
+        <!-- Time Information -->
+ @*        <div class="text-center mb-3">
+            <div class="fw-semibold text-success">
+                <i class="fas fa-sign-in-alt me-1"></i> Your In Time:
+                <span id="inTime">—</span>
+            </div>
+            <div class="fw-semibold text-danger">
+                <i class="fas fa-sign-out-alt me-1"></i> Your Out Time:
+                <span id="outTime">—</span>
+            </div>
+        </div>
+ *@
+        <style>
+            .time-status {
+                display: flex;
+                justify-content: center;
+                gap: 2rem;
+                margin-bottom: 1rem;
+            }
+
+            .time-item {
+                display: flex;
+                align-items: center;
+                font-weight: 600;
+                font-size: 1rem;
+            }
+
+                .time-item i {
+                    margin-right: 6px;
+                }
+
+            .time-in {
+                color: #16a34a; /* green */
+            }
+
+            .time-out {
+                color: #dc2626; /* red */
+            }
+        </style>
+
+        <div class="text-center mb-4">
+            <div class="time-status">
+                <div class="time-item time-in">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Your In Time: <span id="inTime" class="ms-1">04:15 PM</span>
+                </div>
+                <div class="time-item time-out">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Your Out Time: <span id="outTime" class="ms-1">--</span>
+                </div>
+            </div>
+        </div>
+
+
+@* 
+        <div class="text-center mb-4">
+            <div class="d-flex flex-column align-items--center">
+                <div class="fw-semibold fs-6 text-success">
+                    <i class="fas fa-sign-in-alt me-2"></i> Your In Time: <span id="inTime">--</span>
+                </div>
+                <div class="fw-semibold fs-6 text-danger mt-1">
+                    <i class="fas fa-sign-out-alt me-2"></i> Your Out Time: <span id="outTime">--</span>
+                </div>
+            </div>
+        </div> *@
+
+
+        <!-- Login Fields -->
+        <form id="qrLoginForm" autocomplete="off">
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Username</label>
+                <input type="text" id="username" class="form-control form-control-sm" placeholder="Enter your username" required />
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label fw-semibold">Password</label>
+                <input type="password" id="password" class="form-control form-control-sm" placeholder="Enter your password" required />
+            </div>
+
+            <!-- Mark In / Out Buttons -->
+            <div class="d-flex justify-content-between">
+                <button type="button" id="btnMarkIn" class="btn btn-success w-50 me-2">
+                    <i class="fas fa-sign-in-alt me-1"></i> Mark In
+                </button>
+                <button type="button" id="btnMarkOut" class="btn btn-danger w-50">
+                    <i class="fas fa-sign-out-alt me-1"></i> Mark Out
+                </button>
+            </div>
+        </form>
+
+        <!-- Result Message -->
+        <div id="resultMsg" class="mt-4 text-center fw-semibold"></div>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+    // Simulate current time for In/Out display
+    $(document).ready(function () {
+        const now = new Date();
+        const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        $("#inTime").text(timeStr);
+        $("#outTime").text("—");
+    });
+
+    // Button Click Logic
+    $("#btnMarkIn").click(function () {
+        handleAction("in");
+    });
+
+    $("#btnMarkOut").click(function () {
+        handleAction("out");
+    });
+
+    function handleAction(type) {
+        const username = $("#username").val();
+        const password = $("#password").val();
+
+        if (!username || !password) {
+            Swal.fire({
+                icon: "warning",
+                title: "Missing Info",
+                text: "Please enter username and password.",
+                timer: 2000,
+                showConfirmButton: false
+            });
+            return;
+        }
+
+        const timeNow = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        $("#resultMsg").html(
+            `<span class="text-${type === 'in' ? 'success' : 'danger'}">
+                Successfully marked ${type === 'in' ? 'IN' : 'OUT'} at ${timeNow}
+            </span>`
+        );
+
+        Swal.fire({
+            icon: type === 'in' ? "success" : "info",
+            title: `Marked ${type === 'in' ? 'IN' : 'OUT'}`,
+            text: `Time recorded at ${timeNow}`,
+            timer: 2000,
+            showConfirmButton: false
+        });
+    }
+</script>
+}

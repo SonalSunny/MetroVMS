@@ -1,0 +1,78 @@
+﻿@page
+@model MetroVMS.Pages.BookMeetingRoom.IndexModel
+@{
+    ViewData["Title"] = "Meeting Room Bookings";
+}
+
+
+<div class="card mb-5 mb-xl-10">
+    <div class="card-header border-bottom">
+        <div class="card-title">
+            <h3 class="fw-bold m-0 text-primary">Meeting Room Bookings</h3>
+          @*   <a href="/Visitor/Manage" class="btn btn-primary btn-sm">
+                + Add Visitor
+            </a> *@
+        </div>
+        <div class="card-toolbar">
+            <a href="/BookMeetingRoom/Manage" class="btn btn-sm btn-success">
+                <i class="fas fa-plus-circle me-1"></i> New Booking
+            </a>
+        </div>
+    </div>
+
+    <div class="card-body">
+
+        <!-- 🔍 Filter Section -->
+        <form id="filterForm" method="get" class="row mb-4">
+            <div class="col-md-3">
+                <label class="form-label fw-semibold">Meeting Room</label>
+                <select name="MeetingRoom" class="form-select form-select-sm">
+                    <option value="">All</option>
+                    <option>Conference Room A</option>
+                    <option>Conference Room B</option>
+                    <option>Training Hall</option>
+                    <option>Executive Lounge</option>
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label fw-semibold">Date</label>
+                <input type="date" name="MeetingDate" class="form-control form-control-sm" />
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label fw-semibold">Host</label>
+                <input name="HostName" type="text" class="form-control form-control-sm" placeholder="Enter host name" />
+            </div>
+
+            <div class="col-md-3 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary btn-sm w-50">
+                    <i class="fas fa-search me-1"></i> Search
+                </button>
+            </div>
+        </form>
+
+
+
+
+
+        <div id="meetingRoomList">
+            @await Html.PartialAsync("_IndexPartial")
+           @*  <div class="text-center py-5 text-muted">
+                <div class="spinner-border text-primary" role="status"></div>
+                <div class="mt-2">Loading bookings...</div>
+            </div> *@
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        // Optional AJAX reload (placeholder for future dynamic behavior)
+        $("#filterForm").on("submit", function (e) {
+            e.preventDefault();
+            alert("Search clicked.");
+        });
+    </script>
+}

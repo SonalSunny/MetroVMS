@@ -1,0 +1,174 @@
+﻿@page
+@model MetroVMS.Pages.AllStaffMovement.IndexModel
+@{
+    ViewData["Title"] = "All Movements ";
+}
+
+<div class="card mb-5 mb-xl-10">
+    <div class="card-header d-flex justify-content-between align-items-center border-bottom">
+        <h3 class="fw-bold m-0 text-primary">All Staff Movements</h3>
+    </div>
+
+    <div class="card-body">
+
+        <!-- 🔍 Filter Section -->
+        <form id="filterForm" method="get" class="row mb-4">
+            <div class="col-md-3">
+                <label class="form-label fw-semibold">From Date</label>
+                <input type="date" name="FromDate" class="form-control form-control-sm" />
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label fw-semibold">To Date</label>
+                <input type="date" name="ToDate" class="form-control form-control-sm" />
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label fw-semibold">Employee Name</label>
+                <input type="text" name="EmployeeName" class="form-control form-control-sm" placeholder="Search employee" />
+            </div>
+
+            <div class="col-md-3 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary btn-sm w-50">
+                    <i class="fas fa-search me-1"></i> Search
+                </button>
+            </div>
+        </form>
+
+        <!-- 📋 Movements Table -->
+        <div id="movementsList">
+            @await Html.PartialAsync("_IndexPartial")
+        </div>
+
+    </div>
+</div>
+
+@* @section Scripts {
+<script>
+    // Future AJAX filter support
+    $("#filterForm").on("submit", function (e) {
+        e.preventDefault();
+        alert("Filtering movements...");
+    });
+</script>
+} *@
+@* @section Scripts {
+    <script>
+        $(function () {
+            // Open modal when clicking "Edit"
+            $(document).on("click", ".btnOpenEditModal", function (e) {
+              
+                e.preventDefault();
+
+                const $btn = $(this);
+                $("#editEmployeeName").val($btn.data("employee"));
+                $("#editInTime").val($btn.data("intime"));
+                $("#editOutTime").val($btn.data("outtime"));
+                $("#editCorrectedIn").val($btn.data("cin"));
+                $("#editCorrectedOut").val($btn.data("cout"));
+
+                const modal = new bootstrap.Modal(document.getElementById("editMovementModal"));
+                modal.show();
+            });
+
+            // Save button click
+            $("#btnSaveMovement").click(function () {
+                const modalEl = document.getElementById("editMovementModal");
+                const modal = bootstrap.Modal.getInstance(modalEl);
+                modal.hide();
+
+                Swal.fire({
+                    icon: "success",
+                    title: "Saved",
+                    text: "Movement correction saved successfully.",
+                    timer: 1500,
+                    showConfirmButton: false
+                });
+            });
+        });
+    </script>
+} *@
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $(function () {
+            // =========================
+            // 🟢 OPEN EDIT POPUP
+            // =========================
+            $(document).on("click", ".btnOpenEditModal", function (e) {
+                e.preventDefault();
+
+                const $btn = $(this);
+                $("#editEmployeeName").val($btn.data("employee"));
+                $("#editInTime").val($btn.data("intime"));
+                $("#editOutTime").val($btn.data("outtime"));
+                $("#editCorrectedIn").val($btn.data("cin"));
+                $("#editCorrectedOut").val($btn.data("cout"));
+
+                const modal = new bootstrap.Modal(document.getElementById("editMovementModal"));
+                modal.show();
+            });
+
+            // =========================
+            // 💾 SAVE MOVEMENT CHANGES
+            // =========================
+            $("#btnSaveMovement").click(function () {
+                const modalEl = document.getElementById("editMovementModal");
+                const modal = bootstrap.Modal.getInstance(modalEl);
+                modal.hide();
+
+                Swal.fire({
+                    icon: "success",
+                    title: "Saved",
+                    text: "Movement correction saved successfully.",
+                    timer: 1500,
+                    showConfirmButton: false
+                });
+            });
+
+            // =========================
+            // 🔵 MARK IN (Instant Action)
+            // =========================
+            $(document).on("click", ".btnMarkIn", function (e) {
+                e.preventDefault();
+                const $row = $(this).closest("tr");
+                const now = new Date();
+                const time = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+
+                $row.find("td").eq(4).text(time); // assumes In Time = 5th column
+                $row.find("td").eq(9).html('<span class="badge bg-info text-dark">Marked In</span>');
+
+                Swal.fire({
+                    icon: "success",
+                    title: "Marked In",
+                    text: `Employee marked IN at ${time}`,
+                    timer: 1500,
+                    showConfirmButton: false
+                });
+            });
+
+            // =========================
+            // 🔴 MARK OUT (Instant Action)
+            // =========================
+            $(document).on("click", ".btnMarkOut", function (e) {
+                e.preventDefault();
+                const $row = $(this).closest("tr");
+                const now = new Date();
+                const time = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+
+                $row.find("td").eq(5).text(time); // assumes Out Time = 6th column
+                $row.find("td").eq(9).html('<span class="badge bg-danger text-white">Marked Out</span>');
+
+                Swal.fire({
+                    icon: "warning",
+                    title: "Marked Out",
+                    text: `Employee marked OUT at ${time}`,
+                    timer: 1500,
+                    showConfirmButton: false
+                });
+            });
+        });
+    </script>
+}

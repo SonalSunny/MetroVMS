@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+ @inject MetroVMS.Localization.Services.LanguageLCService Localizer 
+@{
+     var layDir = Localizer.GetLayOutDirection();
+     <html lang="en" direction="@layDir" dir="@layDir" style="direction: @layDir">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@ViewData["Title"] - MetroVMS</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" asp-append-version="true" />
+        <link href="~/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" asp-append-version="true" />
+
+
+
+
+        @if (layDir == "rtl")
+        {
+            <link href="~/plugins/custom/datatables/datatables.bundle.rtl.css" rel="stylesheet" type="text/css" asp-append-version="true" />
+            <link href="~/plugins/global/plugins.bundle.rtl.css" rel="stylesheet" type="text/css" asp-append-version="true" />
+            <link href="~/css/style.bundle.rtl.css" rel="stylesheet" type="text/css" asp-append-version="true" />
+        }
+        else
+        {
+            <link href="~/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+            <link href="~/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+            <link href="~/css/style.bundle.css" rel="stylesheet" type="text/css" />
+        }
+
+        <link href="~/css/site.css" rel="stylesheet" />
+       
+     
+        <link href="~/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+        <script src="~/plugins/global/plugins.bundle.js" asp-append-version="true"></script>
+        <script src="~/plugins/custom/datepicker-bt/js/bootstrap-datepicker.js"></script>
+        <link href="~/plugins/custom/datepicker-bt/css/bootstrap-datepicker.css" rel="stylesheet" />
+        <link href="~/plugins/custom/datepicker-bt/css/bootstrap-datepicker3.css" rel="stylesheet" />
+      
+
+    </head>
+    <body id="kt_app_body" data-kt-app-page-loading-enabled="true" data-kt-app-layout="dark-sidebar" data-kt-app-header-fixed="true" data-kt-app-sidebar-enabled="true" data-kt-app-sidebar-fixed="true" data-kt-app-sidebar-hoverable="true" data-kt-app-sidebar-push-header="true" data-kt-app-sidebar-push-toolbar="true" data-kt-app-sidebar-push-footer="true" data-kt-app-toolbar-enabled="true" class="app-default"
+    >
+ @*style="margin: 0 !important; padding: 0 !important ; overflow-x: hidden !important;" *@
+        <div class="d-flex flex-column flex-root app-root">
+            <div class="app-main flex-column flex-row-fluid">
+                <div class="d-flex flex-column flex-column-fluid">
+                    <div id="kt_app_content" class="flex-column-fluid pt-3" >
+                        <div id="kt_app_content_container" class="app-container  container-fluid " >
+                            @RenderBody()
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="divLoader" class="loading-spiner-holder" style="display:none;">
+            <img src="~/media/loader.gif" class="loading-spiner-img" /> 
+        </div>
+        <script>
+            var hostUrl = "assets/";
+        </script>
+
+
+        <script src="~/js/scripts.bundle.js" asp-append-version="true"></script>
+        <script src="~/plugins/custom/fullcalendar/fullcalendar.bundle.js" asp-append-version="true"></script>
+        <script src="~/plugins/custom/datatables/datatables.bundle.js" asp-append-version="true"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/js/iframemanager.js" asp-append-version="true"></script>
+        <script src="~/js/jquery.unobtrusive-ajax.js"></script>
+        <script src="~/js/jquery.validate.js"></script>
+
+        @await RenderSectionAsync("Scripts", required: false)
+
+    </body>
+    </html>
+
+}

@@ -1,0 +1,257 @@
+﻿@* Partial view: All Movements Listing (Receptionist View) *@
+
+
+@* <div class="table-responsive">
+    <table class="table table-hover table-rounded table-striped border gy-4 gs-7 table-sortable table-scroll">
+        <thead class="table-light">
+            <tr>
+                <th width="150" class="text-center">Action</th>
+                <th>Date</th>
+                <th>Employee</th>
+                <th>Photo</th>
+                <th>In Time</th>
+                <th>Out Time</th>
+                <th>Corrected In</th>
+                <th>Corrected Out</th>
+                <th>Duration</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <div class="test btn btn-icon btn-sm btn-light btn-center btn-active-light-primary"
+                         data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                    </div>
+
+                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600
+                                menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
+                        <div class="menu-item px-3">
+                            <a href="#" class="menu-link px-3 btnMarkIn">Mark In</a>
+                        </div>
+                        <div class="menu-item px-3">
+                            <a href="#" class="menu-link px-3 btnMarkOut">Mark Out</a>
+                        </div>
+                        <div class="menu-item px-3">
+                            <a href="#" class="menu-link text-primary px-3 btnOpenEditModal"
+                               data-employee="Arun"
+                               data-intime="09:05"
+                               data-outtime="17:45"
+                               data-cin="09:00"
+                               data-cout="17:40">
+                                Edit
+                            </a>
+                        </div>
+                    </div>
+                </td>
+                <td>12-11-2025</td>
+                <td>Arun</td>
+                <td><img src="/images/employees/john.jpg" alt="Arun" class="rounded-circle" width="40" height="40" /></td>
+                <td>09:05 AM</td>
+                <td>05:45 PM</td>
+                <td>09:00 AM</td>
+                <td>05:40 PM</td>
+                <td>8 hrs 40 mins</td>
+                <td><span class="badge bg-warning text-dark">Edited</span></td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="test btn btn-icon btn-sm btn-light btn-center btn-active-light-primary"
+                         data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                    </div>
+
+                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600
+                                menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
+                        <div class="menu-item px-3">
+                            <a href="#" class="menu-link px-3 btnMarkIn">Mark In</a>
+                        </div>
+                        <div class="menu-item px-3">
+                            <a href="#" class="menu-link px-3 btnMarkOut">Mark Out</a>
+                        </div>
+                        <div class="menu-item px-3">
+                            <a href="#" class="menu-link text-primary px-3 btnOpenEditModal"
+                               data-employee="Anil"
+                               data-intime="08:50"
+                               data-outtime="16:30"
+                               data-cin=""
+                               data-cout="">
+                                Edit
+                            </a>
+                        </div>
+                    </div>
+                </td>
+                <td>12-11-2025</td>
+                <td>Anil</td>
+                <td><img src="/images/employees/mary.jpg" alt="Anil" class="rounded-circle" width="40" height="40" /></td>
+                <td>08:50 AM</td>
+                <td>04:30 PM</td>
+                <td>—</td>
+                <td>—</td>
+                <td>7 hrs 40 mins</td>
+                <td><span class="badge bg-success">Normal</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- ==================== EDIT MODAL ==================== -->
+<div class="modal fade" id="editMovementModal" tabindex="-1" aria-labelledby="editMovementLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title fw-bold" id="editMovementLabel">Edit In/Out Time</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editMovementForm">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Employee</label>
+                        <input type="text" id="editEmployeeName" class="form-control form-control-sm" readonly />
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-semibold">In Time</label>
+                            <input type="time" id="editInTime" class="form-control form-control-sm" readonly />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-semibold">Out Time</label>
+                            <input type="time" id="editOutTime" class="form-control form-control-sm" readonly />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-semibold">Corrected In Time</label>
+                            <input type="time" id="editCorrectedIn" class="form-control form-control-sm" />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-semibold">Corrected Out Time</label>
+                            <input type="time" id="editCorrectedOut" class="form-control form-control-sm" />
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Remarks</label>
+                        <textarea id="editRemark" class="form-control form-control-sm" rows="2" placeholder="Reason for edit"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer bg-light">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" id="btnSaveMovement" class="btn btn-primary btn-sm">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div> *@
+
+
+
+
+
+
+
+
+
+
+
+@* Partial View: Inline Editable Movements Listing *@
+<div class="table-responsive">
+    <table class="table table-hover table-rounded table-striped border gy-4 gs-7 table-sortable table-scroll">
+
+        <thead class="table-light">
+            <tr>
+                <th width="140" class="text-center">Action</th>
+                <th>Date</th>
+                <th>Employee</th>
+                <th>Photo</th>
+                <th>In Time</th>
+                <th>Out Time</th>
+                <th>Corrected In</th>
+                <th>Corrected Out</th>
+                <th>Duration</th>
+                <th>Status</th>
+              
+            </tr>
+        </thead>
+        <tbody>
+
+         
+            <tr>
+                <td class="text-center">
+                    <button class="btn btn-sm btn-light-success me-1" title="Mark In">
+                        <i class="fas fa-sign-in-alt"></i>
+                    </button>
+                    <button class="btn btn-sm btn-light-danger me-1" title="Mark Out">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                 
+                </td>
+                <td>12-11-2025</td>
+                <td>Anu</td>
+                <td><img src="/images/employees/john.jpg" alt="Anu" class="rounded-circle" width="40" height="40" /></td>
+                <td>09:05 AM</td>
+                <td>05:45 PM</td>
+
+              
+
+                <td>
+                    <input type="time" class="form-control form-control-sm border-0 bg-light corrected-in" value="09:00" />
+                </td>
+                <td>
+                    <input type="time" class="form-control form-control-sm border-0 bg-light corrected-out" value="17:40" />
+                </td>
+
+                <td>8 hrs 40 mins</td>
+                <td><span class="badge bg-warning text-dark">Edited</span></td>
+
+              
+            </tr>
+
+         
+
+            <tr>
+                <td class="text-center">
+                    <button class="btn btn-sm btn-light-success me-1" title="Mark In">
+                        <i class="fas fa-sign-in-alt"></i>
+                    </button>
+                    <button class="btn btn-sm btn-light-danger me-1" title="Mark Out">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                 
+                </td>
+                <td>12-11-2025</td>
+                <td>Anil</td>
+                <td><img src="/images/employees/mary.jpg" alt="Anil" class="rounded-circle" width="40" height="40" /></td>
+                <td>08:50 AM</td>
+                <td>04:30 PM</td>
+
+                <td>
+                    <input type="time" class="form-control form-control-sm border-0 bg-light corrected-in" placeholder="--:--" />
+                </td>
+                <td>
+                    <input type="time" class="form-control form-control-sm border-0 bg-light corrected-out" placeholder="--:--" />
+                </td>
+
+                <td>7 hrs 40 mins</td>
+                <td><span class="badge bg-success">Normal</span></td>
+
+               
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script>
+        // 🔹 Highlight edited rows and simulate save
+        $(document).on("change", ".corrected-in, .corrected-out", function () {
+            $(this).addClass("border-warning bg-white");
+            $(this).closest("tr").find(".btnSaveEdit").addClass("btn-warning text-white");
+        });
+
+        $(document).on("click", ".btnSaveEdit", function () {
+            const row = $(this).closest("tr");
+            row.find("input").removeClass("border-warning");
+            $(this).removeClass("btn-warning text-white").addClass("btn-light-primary");
+            alert("Correction saved (demo mode).");
+        });
+    </script>
+}

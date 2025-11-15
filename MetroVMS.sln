@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35919.96
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetroVMS", "MetroVMS\MetroVMS.csproj", "{315C78A4-01F6-4B0C-A1CE-2A73F3BD4BF9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetroVMS.DataAccess", "MetroVMS.DataAccess\MetroVMS.DataAccess.csproj", "{D645A53E-8689-428D-B7A1-44D02EA874A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetroVMS.Services", "MetroVMS.Services\MetroVMS.Services.csproj", "{95766D67-4321-48E9-8B37-5B7D4FB2101C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetroVMS.Localization", "MetroVMS.Localization\MetroVMS.Localization.csproj", "{A3160A88-6028-4C7F-A802-902CE94F5E17}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetroVMS.Entity", "MetroVMS.Entity\MetroVMS.Entity.csproj", "{F6617B13-B653-E382-4759-16656B13DC7D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{315C78A4-01F6-4B0C-A1CE-2A73F3BD4BF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{315C78A4-01F6-4B0C-A1CE-2A73F3BD4BF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{315C78A4-01F6-4B0C-A1CE-2A73F3BD4BF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{315C78A4-01F6-4B0C-A1CE-2A73F3BD4BF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D645A53E-8689-428D-B7A1-44D02EA874A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D645A53E-8689-428D-B7A1-44D02EA874A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D645A53E-8689-428D-B7A1-44D02EA874A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D645A53E-8689-428D-B7A1-44D02EA874A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95766D67-4321-48E9-8B37-5B7D4FB2101C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95766D67-4321-48E9-8B37-5B7D4FB2101C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95766D67-4321-48E9-8B37-5B7D4FB2101C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95766D67-4321-48E9-8B37-5B7D4FB2101C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3160A88-6028-4C7F-A802-902CE94F5E17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3160A88-6028-4C7F-A802-902CE94F5E17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3160A88-6028-4C7F-A802-902CE94F5E17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3160A88-6028-4C7F-A802-902CE94F5E17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6617B13-B653-E382-4759-16656B13DC7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6617B13-B653-E382-4759-16656B13DC7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6617B13-B653-E382-4759-16656B13DC7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6617B13-B653-E382-4759-16656B13DC7D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D45309D5-B73B-4614-8F9B-E89DE9927B86}
+	EndGlobalSection
+EndGlobal

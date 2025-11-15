@@ -1,0 +1,246 @@
+﻿@page
+@model MetroVMS.Pages.NewAppointmentRequest.ManageModel
+@{
+    ViewData["Title"] = "New Appointment Request";
+}
+
+
+<form method="post" id="appointmentForm" novalidate autocomplete="off">
+
+
+
+
+
+    <div class="card mb-5 mb-xl-10">
+        <div class="card-header border-bottom">
+            <div class="card-title">
+                <h3 class="fw-bold m-0 text-primary">New Appointment Request</h3>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="row g-3">
+             
+                <div class="col-md-3">
+                    <label class="form-label fw-semibold">Date <span class="text-danger">*</span></label>
+                    <input type="date" class="form-control form-control-sm" id="AppointmentDate" required />
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label fw-semibold">Time <span class="text-danger">*</span></label>
+                    <input type="time" class="form-control form-control-sm" id="AppointmentTime" required />
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label fw-semibold">Appointment Type <span class="text-danger">*</span></label>
+                    <select id="AppointmentType" class="form-select form-select-sm" required>
+                        <option value="">-- Select Type --</option>
+                        <option>Consultation</option>
+                        <option>Follow-up</option>
+                        <option>Official Meeting</option>
+                        <option>Interview</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label fw-semibold">Person to Meet <span class="text-danger">*</span></label>
+                    <select id="PersonToMeet" class="form-select form-select-sm" required>
+                        <option value="">-- Select Person --</option>
+                        <option>Dr.Arun</option>
+                        <option>Dr.Mary Johnson</option>
+                        <option>Dr.Ahmed</option>
+                        <option>HR Department</option>
+                    </select>
+                </div>
+
+               
+                <div class="col-md-4">
+                    <label class="form-label fw-semibold">Heading <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control form-control-sm" id="Heading" placeholder="Enter appointment heading" required />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label fw-semibold">Contact Number <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control form-control-sm" id="ContactNo" placeholder="Enter contact number" required />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label fw-semibold">Email <span class="text-danger">*</span></label>
+                    <input type="email" class="form-control form-control-sm" id="Email" placeholder="Enter email address" required />
+                </div>
+
+            
+                <div class="col-md-12">
+                    <label class="form-label fw-semibold">Remarks / Description</label>
+                    <textarea id="Description" class="form-control form-control-sm" rows="2" placeholder="Enter remarks or details (optional)"></textarea>
+                </div>
+            </div>
+        </div>
+
+       
+        <div class="card-footer border-top pt-3">
+            <div class="row">
+                <div class="col-6 text-start">
+                    <button type="reset" class="btn btn-secondary btn-sm">
+                        <i class="fas fa-times"></i> Clear
+                    </button>
+                </div>
+                <div class="col-6 text-end">
+                    <button type="submit" class="btn btn-success btn-sm">
+                        <i class="far fa-save"></i> Submit Request
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <script>
+        $(function () {
+            $("#appointmentForm").on("submit", function (e) {
+                e.preventDefault();
+
+                if (!this.checkValidity()) {
+                    e.stopPropagation();
+                    $(this).addClass("was-validated");
+                    return;
+                }
+
+                Swal.fire({
+                    icon: "success",
+                    title: "Appointment Submitted",
+                    text: "Your appointment request has been successfully recorded.",
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+
+                this.reset();
+            });
+        });
+    </script>
+}
+
+
+
+
+
+
+
+
+
+
+
+@* 
+
+<form method="post" id="appointmentForm" novalidate autocomplete="off">
+    <div class="card mb-5 mb-xl-10">
+        <div class="card-header border-bottom">
+            <div class="card-title">
+                <h3 class="fw-bold m-0 text-primary">New Appointment Request</h3>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <label class="form-label fw-semibold">Date <span class="text-danger">*</span></label>
+                    <input type="date" class="form-control form-control-sm" id="AppointmentDate" required />
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label fw-semibold">Time <span class="text-danger">*</span></label>
+                    <input type="time" class="form-control form-control-sm" id="AppointmentTime" required />
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label fw-semibold">Appointment Type <span class="text-danger">*</span></label>
+                    <select id="AppointmentType" class="form-select form-select-sm" required>
+                        <option value="">-- Select Type --</option>
+                        <option>Consultation</option>
+                        <option>Follow-up</option>
+                        <option>Official Meeting</option>
+                        <option>Interview</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label fw-semibold">Person to Meet <span class="text-danger">*</span></label>
+                    <select id="PersonToMeet" class="form-select form-select-sm" required>
+                        <option value="">-- Select Person --</option>
+                        <option>John Smith</option>
+                        <option>Mary Johnson</option>
+                        <option>Dr. Ahmed</option>
+                        <option>HR Department</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold">Heading <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control form-control-sm" id="Heading" placeholder="Enter appointment heading" required />
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold">Description</label>
+                    <textarea id="Description" class="form-control form-control-sm" rows="2" placeholder="Enter description (optional)"></textarea>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label fw-semibold">Contact Number <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control form-control-sm" id="ContactNo" placeholder="Enter contact number" required />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label fw-semibold">Email <span class="text-danger">*</span></label>
+                    <input type="email" class="form-control form-control-sm" id="Email" placeholder="Enter email address" required />
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer border-top pt-3">
+            <div class="row">
+                <div class="col-6 text-start">
+                    <button type="reset" class="btn btn-secondary btn-sm">
+                        <i class="fas fa-times"></i> Clear
+                    </button>
+                </div>
+                <div class="col-6 text-end">
+                    <button type="submit" class="btn btn-success btn-sm">
+                        <i class="far fa-save"></i> Submit Request
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <script>
+        $(function () {
+            $("#appointmentForm").on("submit", function (e) {
+                e.preventDefault();
+
+                // Validate
+                if (!this.checkValidity()) {
+                    e.stopPropagation();
+                    $(this).addClass("was-validated");
+                    return;
+                }
+
+                // Simulate Save
+                Swal.fire({
+                    icon: "success",
+                    title: "Appointment Submitted",
+                    text: "Your appointment request has been successfully recorded.",
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+
+                this.reset();
+            });
+        });
+    </script>
+}
+ *@

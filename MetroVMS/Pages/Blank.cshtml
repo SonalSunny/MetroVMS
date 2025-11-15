@@ -1,0 +1,49 @@
+﻿@page
+@model MetroVMS.Pages.BlankModel
+@inject MetroVMS.Services.Interface.IUserRepository _userRepository;
+@{
+}
+<div class="card">
+	<!--begin::Card body-->
+	<div class="card-body p-0 ">
+		<!--begin::Wrapper-->
+		<div class="card-px text-center py-20 my-10">
+			<!--begin::Title-->
+			<div class="me-7 mb-4">
+@* 				<div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
+					//<img src="@(_userRepository.GetLoggedinUserPhoto(Entities.fileSizeEnum.sizeMedium))" alt="image" />
+					</div> *@
+			</div>
+			<h2 class="fs-2x fw-bold mb-10">Welcome Administrator</h2>
+			<!--end::Title-->
+			<!--begin::Description-->
+			<p class="text-gray-400 fs-4 fw-semibold mb-10 h-10">
+				
+			</p>
+			<div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2 justify-content-center">
+				<a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">
+					<i class="ki-duotone ki-profile-circle fs-4 me-1">
+						<span class="path1"></span>
+						<span class="path2"></span>
+						<span class="path3"></span>
+					</i>Last Login: Thursday, 10th October 2023
+				</a>
+				<a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">
+					<i class="ki-duotone ki-geolocation fs-4 me-1">
+						<span class="path1"></span>
+						<span class="path2"></span>
+					</i>Password Expiries in 100 Days
+				</a>
+				
+			</div>
+			<!--end::Description-->
+		</div>
+		<!--end::Wrapper-->
+		<!--begin::Illustration-->
+		<div class="text-center px-4">
+			<img class="mw-100 mh-300px" alt="" src="assets/media/illustrations/sketchy-1/2.png">
+		</div>
+		<!--end::Illustration-->
+	</div>
+	<!--end::Card body-->
+</div>

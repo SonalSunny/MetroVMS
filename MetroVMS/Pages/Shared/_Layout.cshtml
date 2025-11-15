@@ -1,0 +1,343 @@
+﻿<!DOCTYPE html>
+ @inject MetroVMS.Localization.Services.LanguageLCService Localizer
+
+
+@{
+    var layDir = Localizer.GetLayOutDirection();
+     <html lang="en" direction="@layDir" dir="@layDir" style="direction: @layDir">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Metro</title>
+       
+       
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" asp-append-version="true" />
+        <link href="~/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" asp-append-version="true" />
+
+
+
+
+        @if (layDir == "rtl")
+        {
+            <link href="~/plugins/custom/datatables/datatables.bundle.rtl.css" rel="stylesheet" type="text/css" asp-append-version="true" />
+            <link href="~/plugins/global/plugins.bundle.rtl.css" rel="stylesheet" type="text/css" asp-append-version="true" />
+            <link href="~/css/style.bundle.rtl.css" rel="stylesheet" type="text/css" asp-append-version="true" />
+        }
+        else
+        {
+            <link href="~/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+            <link href="~/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+            <link href="~/css/style.bundle.css" rel="stylesheet" type="text/css" />
+        }
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+        <link href="~/css/site.css" rel="stylesheet" />
+    </head>
+    <body id="kt_app_body" data-bs-theme-mode="dark" data-kt-app-page-loading-enabled="true" data-kt-app-layout="dark-sidebar" data-kt-app-header-fixed="true" data-kt-app-sidebar-enabled="true" data-kt-app-sidebar-fixed="true" data-kt-app-sidebar-hoverable="true" data-kt-app-sidebar-push-header="true" data-kt-app-sidebar-push-toolbar="true" data-kt-app-sidebar-push-footer="true" data-kt-app-toolbar-enabled="true" class="app-default">
+        <!--begin::Theme mode setup on page load-->
+        <script>
+            var defaultThemeMode = "@(User.FindFirst("ThemeMode")?.Value ?? "light")"; var themeMode; if (document.documentElement) {
+                if (document.documentElement.hasAttribute("data-bs-theme-mode")) { themeMode = document.documentElement.getAttribute("data-bs-theme-mode"); } else {
+                    if (localStorage.getItem("data-bs-theme") !== null) { themeMode = localStorage.getItem("data-bs-theme"); }
+                    else { themeMode = defaultThemeMode; }
+                } if (themeMode === "system") { themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; }
+            }
+        </script>
+        <!--end::Theme mode setup on page load-->
+        <div class="d-flex flex-column flex-root app-root" id="kt_app_root">
+            <div class="app-page flex-column flex-column-fluid" id="kt_app_page" >
+                <partial name="_TopNavPartial" />
+                <div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper"  >
+                
+                    <partial name="_LeftNavPartial" />
+
+
+                    @RenderBody()
+
+                </div>
+            </div>
+        </div>
+        <div id="divLoader" class="loading-spiner-holder" style="display:none;">
+            <img src="~/media/loader.gif" class="loading-spiner-img" /> 
+        </div>
+        <!-- ✅ Quick In Modal -->
+        <div class="modal fade" id="quickInModal" tabindex="-1" aria-labelledby="quickInLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content border-0 shadow">
+                    <div class="modal-header bg-success text-white">
+                        <h5 class="modal-title fw-bold" id="quickInLabel">Quick In</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="quickInForm">
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <label class="form-label fw-semibold">Visitor No</label>
+                                    <input type="text" id="VisitorNo" class="form-control form-control-sm" readonly />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label fw-semibold">Department</label>
+                                    <select id="DepartmentId" class="form-select form-select-sm">
+                                        <option value="">Select Department</option>
+                                        <option>HR</option>
+                                        <option>Finance</option>
+                                        <option>IT</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label fw-semibold">Purpose of Visit</label>
+                                    <select id="PurposeId" class="form-select form-select-sm">
+                                        <option value="">Select Purpose</option>
+                                        <option>Meeting</option>
+                                        <option>Delivery</option>
+                                        <option>Interview</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label fw-semibold">Staff </label>
+                                    <input type="text" id="StaffToVisit" class="form-control form-control-sm" placeholder="Enter staff name" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label fw-semibold">Full Name</label>
+                                    <input type="text" id="FullName" class="form-control form-control-sm" placeholder="Visitor name" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label fw-semibold">Civil ID</label>
+                                    <input type="text" id="CivilID" class="form-control form-control-sm" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label fw-semibold">Mobile Number</label>
+                                    <input type="text" id="MobileNumber" class="form-control form-control-sm" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label fw-semibold">Visitor Badge No</label>
+                                    <input type="text" id="VisitorBadgeNo" class="form-control form-control-sm" />
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label fw-semibold">Visit Remark</label>
+                                    <textarea id="VisitRemark" class="form-control form-control-sm" rows="2"></textarea>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer bg-light">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                        <button type="button" id="btnSaveQuickIn" class="btn btn-success btn-sm">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ✅ Quick Out Modal -->
+       <div class="modal fade" id="quickOutModalss" tabindex="-1" aria-labelledby="quickOutLabel" aria-hidden="true">
+            <div class="modal-dialog modal-md modal-dialog-centered">
+                <div class="modal-content border-0 shadow">
+                    <div class="modal-header bg-danger text-white">
+                        <h5 class="modal-title fw-bold" id="quickOutLabel">Quick Visitor Out</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <label class="form-label fw-semibold">Select Visitor</label>
+                        <select id="VisitorOutId" class="form-select form-select-sm">
+                            <option value="">Select visitor currently in</option>
+                            <option>VST-2025-0001 - John Doe</option>
+                            <option>VST-2025-0002 - Jane Smith</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer bg-light">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                        <button type="button" id="btnSaveQuickOut" class="btn btn-danger btn-sm">Confirm Out</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ✅ Quick Out Modal -->
+        <div class="modal fade" id="quickOutModal" tabindex="-1" aria-labelledby="quickOutLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content border-0 shadow">
+                    <div class="modal-header bg-danger text-white">
+                        <h5 class="modal-title fw-bold" id="quickOutLabel">Quick Out</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <label class="form-label fw-semibold">Search Visitor</label>
+                                <div class="input-group input-group-sm">
+                                    <input type="text" id="visitorSearchInput" class="form-control" placeholder="Search by Badge No, Mobile, or Civil ID..." />
+                                    <button class="btn btn-primary" id="btnSearchVisitor">
+                                        <i class="fas fa-search"></i> Search
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ✅ Visitor List Table -->
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered align-middle mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Visitor No</th>
+                                        <th>Full Name</th>
+                                        <th>Badge No</th>
+                                        <th>Mobile</th>
+                                        <th>Civil ID</th>
+                                        <th>Department</th>
+                                        <th>Purpose</th>
+                                        <th>In Time</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="visitorOutTable">
+                                    <tr>
+                                        <td colspan="9" class="text-center text-muted py-3">Loading active visitors...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer bg-light">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+       
+
+
+
+
+
+
+
+
+
+
+        <script>
+            var hostUrl = "assets/";
+        </script>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <script src="~/plugins/global/plugins.bundle.js" asp-append-version="true"></script>
+        <script src="~/js/scripts.bundle.js" asp-append-version="true"></script>
+        <script src="~/plugins/custom/fullcalendar/fullcalendar.bundle.js" asp-append-version="true"></script>
+        <script src="~/plugins/custom/datatables/datatables.bundle.js" asp-append-version="true"></script>
+        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/js/iframemanager.js" asp-append-version="true"></script>
+        <script src="~/js/ifrom-popup.js" asp-append-version="true"></script>
+        @await RenderSectionAsync("Scripts", required: false)
+        <partial name="_IframeModal" />
+
+        <!-- ✅ Quick In/Out JS -->
+        <script>
+            $(function () {
+                  $('[data-bs-toggle="tooltip"]').tooltip();
+                // ✅ Load active visitors (available everywhere inside this block)
+                function loadActiveVisitors(search = "") {
+                    $("#visitorOutTable").html(`<tr><td colspan='9' class='text-center text-muted py-3'>Loading...</td></tr>`);
+
+                    setTimeout(() => {
+                        const allVisitors = [
+                            { id: 1, visitorNo: "001", name: "Anu", badge: "B123", mobile: "900123456", civil: "245678901", dept: "IT", purpose: "Maintenance", inTime: "09:30 AM" },
+                            { id: 2, visitorNo: "002", name: "Manu", badge: "B234", mobile: "987654321", civil: "345678901", dept: "HR", purpose: "Interview", inTime: "10:15 AM" },
+                            { id: 3, visitorNo: "003", name: "Ali", badge: "B567", mobile: "909090909", civil: "789654123", dept: "Admin", purpose: "Delivery", inTime: "11:00 AM" },
+                        ];
+
+                        const filtered = search
+                            ? allVisitors.filter(v =>
+                                v.badge.toLowerCase().includes(search.toLowerCase()) ||
+                                v.mobile.includes(search) ||
+                                v.civil.includes(search)
+                            )
+                            : allVisitors;
+
+                        if (filtered.length === 0) {
+                            $("#visitorOutTable").html(`<tr><td colspan='9' class='text-center text-danger py-3'>No matching visitor found.</td></tr>`);
+                            return;
+                        }
+
+                        const rows = filtered.map(v => `
+                            <tr>
+                                <td>${v.visitorNo}</td>
+                                <td>${v.name}</td>
+                                <td>${v.badge}</td>
+                                <td>${v.mobile}</td>
+                                <td>${v.civil}</td>
+                                <td>${v.dept}</td>
+                                <td>${v.purpose}</td>
+                                <td>${v.inTime}</td>
+                                <td>
+                                        <button class="btn btn-danger btn-sm btnMarkOut" data-id="${v.id}" data-name="${v.name}" data-bs-toggle="tooltip"
+            title="Mark Out">
+                                        <i class="fas fa-right-from-bracket"></i> 
+                                    </button>
+                                </td>
+                            </tr>
+                        `);
+                        $("#visitorOutTable").html(rows.join(""));
+                        $('[data-bs-toggle="tooltip"]').tooltip();
+                    }, 400);
+                }
+
+                // ✅ Handle modal open
+                $(document).on("click", "#btnQuickOut", function (e) {
+                    e.preventDefault();
+                    $("#quickOutModal").modal("show");
+                    loadActiveVisitors();
+                });
+
+                // ✅ Search visitors
+                $(document).on("click", "#btnSearchVisitor", function () {
+                    const term = $("#visitorSearchInput").val().trim();
+                    loadActiveVisitors(term);
+                });
+
+                // ✅ Mark Out button
+                $(document).on("click", ".btnMarkOut", function () {
+                    const visitorName = $(this).data("name");
+                    Swal.fire({
+                        title: "Confirm Out?",
+                        text: `Mark ${visitorName} as OUT now?`,
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonText: "Yes, Mark Out",
+                        cancelButtonText: "Cancel",
+                        confirmButtonColor: "#d33"
+                    }).then(result => {
+                        if (result.isConfirmed) {
+                            Swal.fire("Success", `${visitorName} marked as OUT.`, "success");
+                            $(this).closest("tr").fadeOut();
+                        }
+                    });
+                });
+
+                // ✅ Quick In functionality (optional)
+                $(document).on("click", "#btnQuickIn", function (e) {
+                    e.preventDefault();
+                    const visitorNo = "001";
+                    $("#VisitorNo").val(visitorNo);
+                    $("#quickInModal").modal("show");
+                });
+
+                $(document).on("click", "#btnSaveQuickIn", function () {
+                    const visitorName = $("#FullName").val().trim();
+                    if (!visitorName) {
+                        alert("Please enter visitor name.");
+                        return;
+                    }
+                    alert(`Visitor ${visitorName} checked IN successfully.`);
+                    $("#quickInModal").modal("hide");
+                    $("#quickInForm")[0].reset();
+                });
+            });
+        </script>
+
+
+    </body>
+    </html>
+}

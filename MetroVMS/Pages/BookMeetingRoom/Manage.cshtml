@@ -1,0 +1,115 @@
+﻿@page
+@{
+    ViewData["Title"] = "Book Meeting Room";
+}
+
+<form id="meetingForm" novalidate="novalidate" autocomplete="off">
+    <div class="card mb-5 mb-xl-10">
+        <div class="card-header cursor-pointer border-bottom">
+            <div class="card-title m-0">
+                <h3 class="fw-bold m-0 text-primary">Book Meeting Room</h3>
+            </div>
+        </div>
+
+        <div class="card-body">
+
+            <!-- ====================== MEETING DETAILS ====================== -->
+            <h5 class="fw-bold text-dark mb-3 border-bottom pb-2">Meeting Details</h5>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <label class="form-label fw-semibold">Meeting Room</label>
+                    <select class="form-select form-select-sm" id="MeetingRoom">
+                        <option value="">-- Select Room --</option>
+                        <option>Conference Room A</option>
+                        <option>Conference Room B</option>
+                        <option>Executive Lounge</option>
+                        <option>Training Hall</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <label class="form-label fw-semibold">Meeting Title</label>
+                    <input type="text" id="MeetingTitle" class="form-control form-control-sm" placeholder="Enter meeting title" />
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <label class="form-label fw-semibold">Date</label>
+                    <input type="date" id="MeetingDate" class="form-control form-control-sm" />
+                </div>
+
+                <div class="col-md-3 mb-4">
+                    <label class="form-label fw-semibold">From Time</label>
+                    <input type="time" id="FromTime" class="form-control form-control-sm" />
+                </div>
+
+                <div class="col-md-3 mb-4">
+                    <label class="form-label fw-semibold">To Time</label>
+                    <input type="time" id="ToTime" class="form-control form-control-sm" />
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <label class="form-label fw-semibold">Host</label>
+                    <input type="text" id="Host" class="form-control form-control-sm" placeholder="Enter host name" />
+                </div>
+
+                <div class="col-md-12 mb-4">
+                    <label class="form-label fw-semibold">Meeting Remark</label>
+                    <textarea id="MeetingRemark" class="form-control form-control-sm" rows="2" placeholder="Enter remarks..."></textarea>
+                </div>
+            </div>
+
+            <!-- ====================== ATTENDEES ====================== -->
+            <h5 class="fw-bold text-dark mb-3 border-bottom pb-2 mt-4">Attendees</h5>
+            <div class="mb-4">
+                <label class="form-label fw-semibold">Add Attendees</label>
+                <input type="text" id="AttendeesInput" class="form-control form-control-sm" placeholder="Type a name and press Enter..." />
+                <div id="AttendeeTags" class="d-flex flex-wrap mt-2"></div>
+            </div>
+
+            <!-- ====================== FOOTER BUTTONS ====================== -->
+            <div class="card-footer mt-4 border-top pt-3">
+                <div class="row">
+                    <div class="col-6 text-start">
+                        <button type="button" class="btn btn-secondary btn-sm" id="btnClear">
+                            <i class="fas fa-times"></i> Clear
+                        </button>
+                    </div>
+                    <div class="col-6 text-end">
+                        <button type="button" class="btn btn-success btn-sm">
+                            <i class="far fa-save"></i> Save
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <script>
+        // Dynamic attendee tags (like Teams mentions)
+        const attendees = [];
+        $('#AttendeesInput').on('keypress', function(e) {
+            if (e.which === 13 && this.value.trim() !== '') {
+                e.preventDefault();
+                const name = this.value.trim();
+                attendees.push(name);
+                $('#AttendeeTags').append(`
+                    <span class="badge bg-primary me-2 mb-2 p-2">
+                        ${name}
+                        <i class="fas fa-times ms-1 removeAttendee" style="cursor:pointer;"></i>
+                    </span>
+                `);
+                this.value = '';
+            }
+        });
+
+        $(document).on('click', '.removeAttendee', function() {
+            const name = $(this).parent().text().trim();
+            $(this).parent().remove();
+        });
+
+        $('#btnClear').click(() => $('#meetingForm')[0].reset());
+    </script>
+}

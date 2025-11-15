@@ -1,0 +1,62 @@
+﻿@page
+@model MetroVMS.Pages.MyMeetings.IndexModel
+@{
+}
+
+
+
+<div class="card mb-5 mb-xl-10">
+    <div class="card-header border-bottom">
+        <div class="card-title">
+            <h3 class="fw-bold m-0 text-primary">My Meetings</h3>
+          @*   <a href="/Visitor/Manage" class="btn btn-primary btn-sm">
+                + Add Visitor
+            </a> *@
+        </div>
+   
+    </div>
+
+    <div class="card-body">
+
+       
+        <!-- 🔍 Filter Section -->
+        <form id="filterForm" method="get" class="row mb-4">
+            <div class="col-md-3">
+                <label class="form-label fw-semibold">Meeting Room</label>
+                <select name="MeetingRoom" class="form-select form-select-sm">
+                    <option value="">All</option>
+                    <option>Conference Room A</option>
+                    <option>Conference Room B</option>
+                    <option>Training Hall</option>
+                    <option>Executive Lounge</option>
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label fw-semibold">Date</label>
+                <input type="date" name="MeetingDate" class="form-control form-control-sm" />
+            </div>
+
+         
+
+            <div class="col-md-3 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary btn-sm w-50">
+                    <i class="fas fa-search me-1"></i> Search
+                </button>
+            </div>
+        </form>
+
+
+
+
+        <div id="meetingRoomList">
+            @await Html.PartialAsync("_IndexPartial")
+           @*  <div class="text-center py-5 text-muted">
+                <div class="spinner-border text-primary" role="status"></div>
+                <div class="mt-2">Loading bookings...</div>
+            </div> *@
+        </div>
+    </div>
+</div>
+
+

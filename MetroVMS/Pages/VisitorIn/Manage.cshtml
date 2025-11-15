@@ -1,0 +1,404 @@
+﻿@page
+@model MetroVMS.Pages.VisitorIn.ManageModel
+
+@{
+    ViewData["Title"] = "Visitor IN Entry";
+}
+    
+
+
+@* <form method="post" id="crudForm" novalidate="novalidate" autocomplete="off">
+    <div class="card mb-5 mb-xl-10">
+        <div class="card-header cursor-pointer border-bottom">
+            <div class="card-title m-0">
+                <h3 class="fw-bold m-0 text-primary">Visitor IN Entry</h3>
+            </div>
+        </div>
+
+        <div class="card-body">
+
+            <!-- ====================== SECTION 1: VISITOR INFORMATION ====================== -->
+            <h5 class="fw-bold text-dark mb-3 border-bottom pb-2">Visitor Information</h5>
+            <div class="row">
+                <div class="col-md-3 mb-4">
+                    <label class="form-label fw-semibold">Visitor No</label>
+                    <input type="text" class="form-control form-control-sm" placeholder="Auto-generated" readonly />
+                </div>
+                <div class="col-md-3 mb-4">
+                    <label class="form-label fw-semibold">Date</label>
+                    <input type="date" class="form-control form-control-sm" />
+                </div>
+                <div class="col-md-3 mb-4">
+                    <label class="form-label fw-semibold">In Time</label>
+                    <input type="time" class="form-control form-control-sm" />
+                </div>
+                <div class="col-md-3 mb-4">
+                    <label class="form-label fw-semibold">Out Time</label>
+                    <input type="time" class="form-control form-control-sm" />
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <label class="form-label fw-semibold">Purpose of Visit</label>
+                    <input type="text" class="form-control form-control-sm" placeholder="Meeting / Delivery / Maintenance" />
+                </div>
+                <div class="col-md-4 mb-4">
+                    <label class="form-label fw-semibold">Department to Visit</label>
+                    <input type="text" class="form-control form-control-sm" placeholder="e.g. HR / IT / Finance" />
+                </div>
+                <div class="col-md-4 mb-4">
+                    <label class="form-label fw-semibold">Person to Visit</label>
+                    <input type="text" class="form-control form-control-sm" placeholder="Enter name" />
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <label class="form-label fw-semibold">Full Name</label>
+                    <input type="text" class="form-control form-control-sm" placeholder="Enter visitor name" />
+                </div>
+                <div class="col-md-4 mb-4">
+                    <label class="form-label fw-semibold">Mobile Number</label>
+                    <input type="text" class="form-control form-control-sm" placeholder="Enter mobile number" />
+                </div>
+                <div class="col-md-4 mb-4">
+                    <label class="form-label fw-semibold">Civil ID</label>
+                    <input type="text" class="form-control form-control-sm" placeholder="Enter Civil ID" />
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <label class="form-label fw-semibold">Company Name</label>
+                    <input type="text" class="form-control form-control-sm" placeholder="Enter company name" />
+                </div>
+                <div class="col-md-4 mb-4">
+                    <label class="form-label fw-semibold">Designation</label>
+                    <input type="text" class="form-control form-control-sm" placeholder="Enter designation" />
+                </div>
+                <div class="col-md-4 mb-4">
+                    <label class="form-label fw-semibold">Email Address</label>
+                    <input type="email" class="form-control form-control-sm" placeholder="Enter email" />
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <label class="form-label fw-semibold">Vehicle Number</label>
+                    <input type="text" class="form-control form-control-sm" placeholder="Enter vehicle number" />
+                </div>
+                <div class="col-md-4 mb-4">
+                    <label class="form-label fw-semibold">Visitor Badge Number</label>
+                    <input type="text" class="form-control form-control-sm" placeholder="Enter badge number" />
+                </div>
+            </div>
+
+            <!-- ====================== SECTION 2: VISITOR COMPANIONS ====================== -->
+            <h5 class="fw-bold text-dark mb-3 border-bottom pb-2 mt-5">Visitor Companion(s)</h5>
+            <div class="table-responsive">
+                <table class="table table-bordered align-middle" id="companionTable">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Name</th>
+                            <th>Civil ID</th>
+                            <th>Mobile Number</th>
+                            <th>Visitor Badge Number</th>
+                            <th width="60">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input class="form-control form-control-sm" placeholder="Name" /></td>
+                            <td><input class="form-control form-control-sm" placeholder="Civil ID" /></td>
+                            <td><input class="form-control form-control-sm" placeholder="Mobile" /></td>
+                            <td><input class="form-control form-control-sm" placeholder="Badge No" /></td>
+                            <td class="text-center">
+                                <button type="button" class="btn btn-danger btn-sm" onclick="removeRow(this)">X</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <button type="button" class="btn btn-outline-primary btn-sm" id="btnAddCompanion">
+                    + Add Companion
+                </button>
+            </div>
+
+            <!-- ====================== SECTION 3: REMARKS & ENTRY INFO ====================== -->
+            <h5 class="fw-bold text-dark mb-3 border-bottom pb-2 mt-5">Remarks & Entry Information</h5>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <label class="form-label fw-semibold">Visitor Remark</label>
+                    <textarea class="form-control form-control-sm" rows="2" placeholder="Enter visitor remarks"></textarea>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <label class="form-label fw-semibold">Visit Remark</label>
+                    <textarea class="form-control form-control-sm" rows="2" placeholder="Enter visit remarks"></textarea>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <label class="form-label fw-semibold">In By</label>
+                    <input type="text" class="form-control form-control-sm" placeholder="Employee Name" />
+                </div>
+                <div class="col-md-6 mb-4">
+                    <label class="form-label fw-semibold">Out By</label>
+                    <input type="text" class="form-control form-control-sm" placeholder="Employee Name" />
+                </div>
+            </div>
+
+            <!-- ====================== FOOTER BUTTONS ====================== -->
+            <div class="card-footer mt-4 border-top pt-3">
+                <div class="row">
+                    <div class="col-6 text-start">
+                        <button type="button" class="btn btn-secondary btn-sm" id="btnClear">
+                            <i class="fas fa-times"></i> Clear
+                        </button>
+                    </div>
+                    <div class="col-6 text-end">
+                        <button type="button" class="btn btn-success btn-sm">
+                            <i class="far fa-save"></i> Save
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <script>
+        // Add/remove companion rows dynamically
+        let companionIndex = 1;
+        $("#btnAddCompanion").click(function () {
+            const row = `
+                <tr>
+                    <td><input class="form-control form-control-sm" placeholder="Name" /></td>
+                    <td><input class="form-control form-control-sm" placeholder="Civil ID" /></td>
+                    <td><input class="form-control form-control-sm" placeholder="Mobile" /></td>
+                    <td><input class="form-control form-control-sm" placeholder="Badge No" /></td>
+                    <td class="text-center">
+                        <button type="button" class="btn btn-danger btn-sm" onclick="removeRow(this)">X</button>
+                    </td>
+                </tr>`;
+            $("#companionTable tbody").append(row);
+            companionIndex++;
+        });
+
+        function removeRow(btn) {
+            $(btn).closest("tr").remove();
+        }
+
+        $("#btnClear").click(() => $("#crudForm")[0].reset());
+    </script>
+}
+ *@
+
+
+<form method="post" id="crudForm" novalidate="novalidate" autocomplete="off">
+    <div class="card mb-5 mb-xl-10">
+        <div class="card-header cursor-pointer border-bottom">
+            <div class="card-title m-0">
+                <h3 class="fw-bold m-0 text-primary">Visitor IN Entry</h3>
+            </div>
+        </div>
+
+        <div class="card-body">
+
+            <!-- ====================== SECTION 1: VISITOR INFORMATION ====================== -->
+            <h5 class="fw-bold text-dark mb-3 border-bottom pb-2">Visitor Information</h5>
+            <div class="row">
+                <div class="col-md-3 mb-4">
+                    <label class="form-label fw-semibold">Visitor No</label>
+                    <input type="text" class="form-control form-control-sm" placeholder="Auto-generated" readonly />
+                </div>
+                <div class="col-md-3 mb-4">
+                    <label class="form-label fw-semibold">Date</label>
+                    <input type="date" class="form-control form-control-sm" />
+                </div>
+                <div class="col-md-3 mb-4">
+                    <label class="form-label fw-semibold">In Time</label>
+                    <input type="time" class="form-control form-control-sm" />
+                </div>
+                <div class="col-md-3 mb-4">
+                    <label class="form-label fw-semibold">Out Time</label>
+                    <input type="time" class="form-control form-control-sm" />
+                </div>
+                <div class="col-md-4 mb-4">
+                    <label class="form-label fw-semibold">Purpose of Visit</label>
+                    <select class="form-select form-select-sm">
+                        <option value="">-- Select Purpose --</option>
+                        <option>Business Meeting</option>
+                        <option>Interview</option>
+                        <option>Maintenance</option>
+                        <option>Delivery</option>
+                        <option>Official Visit</option>
+                        <option>Training</option>
+                        <option>Personal</option>
+                    </select>
+                </div>
+             @*    <div class="col-md-4 mb-4">
+                    <label class="form-label fw-semibold">Purpose of Visit</label>
+                    <input type="text" class="form-control form-control-sm" placeholder="Meeting / Delivery / Maintenance" />
+                </div> *@
+             @*    <div class="col-md-4 mb-4">
+                    <label class="form-label fw-semibold">Department to Visit</label>
+                    <input type="text" class="form-control form-control-sm" placeholder="e.g. HR / IT / Finance" />
+                </div> *@
+
+                <div class="col-md-4 mb-4">
+                    <label class="form-label fw-semibold">Department to Visit</label>
+                    <select class="form-select form-select-sm">
+                        <option value="">-- Select Department --</option>
+                        <option>Human Resources</option>
+                        <option>Finance</option>
+                        <option>IT</option>
+                        <option>Administration</option>
+                        <option>Security</option>
+                        <option>Operations</option>
+                        <option>Procurement</option>
+                        <option>Maintenance</option>
+                    </select>
+                </div>
+
+
+
+
+
+
+
+
+
+                <div class="col-md-4 mb-4">
+                    <label class="form-label fw-semibold">Person to Visit</label>
+                    <input type="text" class="form-control form-control-sm" placeholder="Enter name" />
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <label class="form-label fw-semibold">Full Name</label>
+                    <input type="text" class="form-control form-control-sm" placeholder="Enter visitor name" />
+                </div>
+                <div class="col-md-4 mb-4">
+                    <label class="form-label fw-semibold">Mobile Number</label>
+                    <input type="text" class="form-control form-control-sm" placeholder="Enter mobile number" />
+                </div>
+                <div class="col-md-4 mb-4">
+                    <label class="form-label fw-semibold">Civil ID</label>
+                    <input type="text" class="form-control form-control-sm" placeholder="Enter Civil ID" />
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <label class="form-label fw-semibold">Company Name</label>
+                    <input type="text" class="form-control form-control-sm" placeholder="Enter company name" />
+                </div>
+                <div class="col-md-4 mb-4">
+                    <label class="form-label fw-semibold">Designation</label>
+                    <input type="text" class="form-control form-control-sm" placeholder="Enter designation" />
+                </div>
+                <div class="col-md-4 mb-4">
+                    <label class="form-label fw-semibold">Email Address</label>
+                    <input type="email" class="form-control form-control-sm" placeholder="Enter email" />
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <label class="form-label fw-semibold">Vehicle Number</label>
+                    <input type="text" class="form-control form-control-sm" placeholder="Enter vehicle number" />
+                </div>
+                <div class="col-md-4 mb-4">
+                    <label class="form-label fw-semibold">Visitor Badge Number</label>
+                    <input type="text" class="form-control form-control-sm" placeholder="Enter badge number" />
+                </div>
+            </div>
+
+            <!-- ====================== SECTION 2: VISITOR COMPANIONS ====================== -->
+            <div class="d-flex justify-content-between align-items-center mb-3 mt-5 border-bottom pb-2">
+                <h5 class="fw-bold text-dark m-0">Visitor Companion(s)</h5>
+                <button type="button" class="btn btn-outline-primary btn-sm" id="btnAddCompanion">
+                    + Add Companion
+                </button>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-bordered align-middle" id="companionTable">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Name</th>
+                            <th>Civil ID</th>
+                            <th>Mobile Number</th>
+                            <th>Visitor Badge Number</th>
+                            <th width="60">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input class="form-control form-control-sm" placeholder="Name" /></td>
+                            <td><input class="form-control form-control-sm" placeholder="Civil ID" /></td>
+                            <td><input class="form-control form-control-sm" placeholder="Mobile" /></td>
+                            <td><input class="form-control form-control-sm" placeholder="Badge No" /></td>
+                            <td class="text-center">
+                                <button type="button" class="btn btn-danger btn-sm" onclick="removeRow(this)">X</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- ====================== SECTION 3: REMARKS & ENTRY INFO ====================== -->
+            <h5 class="fw-bold text-dark mb-3 border-bottom pb-2 mt-5">Remarks & Entry Information</h5>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <label class="form-label fw-semibold">Visitor Remark</label>
+                    <textarea class="form-control form-control-sm" rows="2" placeholder="Enter visitor remarks"></textarea>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <label class="form-label fw-semibold">Visit Remark</label>
+                    <textarea class="form-control form-control-sm" rows="2" placeholder="Enter visit remarks"></textarea>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <label class="form-label fw-semibold">In By</label>
+                    <input type="text" class="form-control form-control-sm" placeholder="Employee Name" />
+                </div>
+                <div class="col-md-6 mb-4">
+                    <label class="form-label fw-semibold">Out By</label>
+                    <input type="text" class="form-control form-control-sm" placeholder="Employee Name" />
+                </div>
+            </div>
+
+            <!-- ====================== FOOTER BUTTONS ====================== -->
+            <div class="card-footer mt-4 border-top pt-3">
+                <div class="row">
+                    <div class="col-6 text-start">
+                        <button type="button" class="btn btn-secondary btn-sm" id="btnClear">
+                            <i class="fas fa-times"></i> Clear
+                        </button>
+                    </div>
+                    <div class="col-6 text-end">
+                        <button type="button" class="btn btn-success btn-sm">
+                            <i class="far fa-save"></i> Save
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+<script>
+    // Add/remove companion rows dynamically
+    let companionIndex = 1;
+    $("#btnAddCompanion").click(function () {
+        const row = `
+            <tr>
+                <td><input class="form-control form-control-sm" placeholder="Name" /></td>
+                <td><input class="form-control form-control-sm" placeholder="Civil ID" /></td>
+                <td><input class="form-control form-control-sm" placeholder="Mobile" /></td>
+                <td><input class="form-control form-control-sm" placeholder="Badge No" /></td>
+                <td class="text-center">
+                    <button type="button" class="btn btn-danger btn-sm" onclick="removeRow(this)">X</button>
+                </td>
+            </tr>`;
+        $("#companionTable tbody").append(row);
+        companionIndex++;
+    });
+
+    function removeRow(btn) {
+        $(btn).closest("tr").remove();
+    }
+
+    $("#btnClear").click(() => $("#crudForm")[0].reset());
+</script>
+}
