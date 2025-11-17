@@ -23,6 +23,8 @@ namespace MetroVMS.Services.ApplicationMenu
             objMMenu1.Menus = new List<AppMenu>();
             objMMenu1.Menus.AddRange(HomeMenu.GetHomeMenu());
             objMMenu1.Menus.AddRange(DashboardMenu.GetDashBoardMenu());
+            objMMenu1.Menus.AddRange(MaterialRequestMenu.GetMaterialRequestMenu());
+            objMMenu1.Menus.AddRange(PurchaseMenu.GetPurchaseMenu());
             objMMenu1.Menus.AddRange(VisitorManagementMenu.GetVisitorManagementMenu());
             objMMenu1.Menus.AddRange(AppointmentsMenu.GetAppointmentsMenu());
             objMMenu1.Menus.AddRange(MeetingRoomMenu.GetMeetingRoomMenu());

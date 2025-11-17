@@ -55,10 +55,8 @@ namespace MetroVMS.Services.Repository
         public async Task<ResponseEntity<RoleViewModel>> SaveRole(RoleViewModel model)
         {
             var retModel = new ResponseEntity<RoleViewModel>();
-
             try
             {
-
                 var roleExists = _dbContext.Roles
                        .Any(u => u.RoleName == model.RoleName);
                 if (roleExists)
@@ -68,8 +66,6 @@ namespace MetroVMS.Services.Repository
                 }
                 else
                 {
-
-
                     var role = new Role
                     {
                         RoleName = model.RoleName,
@@ -81,25 +77,19 @@ namespace MetroVMS.Services.Repository
                     //user.PasswordHash = PasswordHasher.ComputeHash(model.Password, user.PasswordSalt, _pepper, _iteration);
                     await _dbContext.Roles.AddAsync(role);
                     await _dbContext.SaveChangesAsync();
+                    model.RoleId = role.RoleId;
                     retModel.transactionStatus = System.Net.HttpStatusCode.OK;
                     retModel.returnMessage = "Saved Successfully";
-
+                    retModel.returnData = model;
                 }
-
-
             }
             catch (Exception ex)
             {
 
 
             }
-
-
             return retModel;
-
-
         }
-
 
         public ResponseEntity<bool> DeleteRole(RoleViewModel objModel)
         {

@@ -17,6 +17,8 @@ namespace MetroVMS.Entity.Identity.DTO
         public virtual Role Role { get; set; }
         public string? ActiveSessionId { get; set; }
         public DateTime? LastLoggedInDatetime { get; set; }
-
+        public long? BranchId { get; set; }
+        public long? DepartmentId { get; set; }
+        public long? DesignationId { get; set; }
     }
 }

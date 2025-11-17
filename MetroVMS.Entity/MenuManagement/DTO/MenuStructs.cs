@@ -184,8 +184,9 @@ namespace MetroVMS.Entity.MenuManagement.DTO
         public const int VisitorManagement = 28;
         public const int VisitorRegister = 2801;
         public const int VisitorLog= 2802;
-      
+
         #endregion
+
         #region Appointments
         public const int Appointments = 29;
         public const int NewAppointmentRequest = 2901;
@@ -214,6 +215,23 @@ namespace MetroVMS.Entity.MenuManagement.DTO
 
         #endregion
 
+        #region MaterialRequest
+        public const int MaterialRequest = 33;
+        public const int NewRequest = 3301;
+        public const int BranchApproval = 3302;
+        public const int HOApproval = 3303;
+        public const int Store = 3304;
+        public const int UnderPurchase = 3305;
+        public const int FullyDelivered = 3306;
+        #endregion
+
+        #region MaterialRequest
+        public const int Purchase = 34;
+        public const int NewRequest_Purchase = 3401;
+        public const int HOApproval_Purchase = 3402;
+        public const int PurchaseDepartment = 3403;
+        public const int Delivery = 3404;
+        #endregion
     }
 
 
