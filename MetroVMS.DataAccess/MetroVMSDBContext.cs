@@ -4,6 +4,7 @@ using MetroVMS.Entity.DepartmentMaster.DTO;
 using MetroVMS.Entity.EmployeeManagement.DTO;
 using MetroVMS.Entity.Identity.DTO;
 using MetroVMS.Entity.ItemMaster.DTO;
+using MetroVMS.Entity.ItemRequestMasterData.DTO;
 using MetroVMS.Entity.Localization.DTO;
 using MetroVMS.Entity.RoleData.DTO;
 using Microsoft.AspNetCore.Http;
@@ -45,6 +46,7 @@ namespace MetroVMS.DataAccess
         public DbSet<Designation> Designations { get; set; }
         public DbSet<Branch> Branches { get; set; }
         public DbSet<Item> Items { get; set; }
+        public DbSet<ItemRequestMaster> ItemRequestMasters { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

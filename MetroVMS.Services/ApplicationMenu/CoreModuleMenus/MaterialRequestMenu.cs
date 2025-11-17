@@ -31,7 +31,7 @@ namespace MetroVMS.Services.ApplicationMenu.CoreModuleMenus
                     MenuIcon = "",
                     MenuTitle = "New Request",
                     MenuDescription = "New Request",
-                    Path = "",
+                    Path = "MaterialRequest/Index",
                     PageCode = "",
                     DisplayOrder = 1,
                     GroupBy = "Settings",

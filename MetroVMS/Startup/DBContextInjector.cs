@@ -18,7 +18,7 @@ namespace MetroVMS.Program
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IDropDownRepository, DropDownRepository>();
             services.AddScoped<IRoleRepository, RoleRepository>();
-
+            services.AddScoped<IItemRequestRepository, ItemRequestRepository>();
         }
     }
 }
