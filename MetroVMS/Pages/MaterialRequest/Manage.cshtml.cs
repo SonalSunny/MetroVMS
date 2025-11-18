@@ -41,14 +41,9 @@ namespace MetroVMS.Pages.MaterialRequest
         }
         public async Task<IActionResult> OnPost()
         {
-            var DepartmentName = "";// inputModel.DepartmentName;
-            if (DepartmentName == null)
+            if (ModelState.IsValid)
             {
-                pageErrorMessage = "Fill all the required fields";
-            }
-            else
-            {
-                var retData = new ResponseEntity<DepartmentViewModel>();
+                var retData = new ResponseEntity<ItemRequestViewModel>();
                 if (btnSubmit == "btnSave" /*&& ModelState.IsValid*/)
                 {
                     if (formMode.Equals(FormModeEnum.add))

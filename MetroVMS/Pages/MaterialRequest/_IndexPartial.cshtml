@@ -61,7 +61,7 @@
                                 <div class="menu-item px-3">
                                     <a href="#" class="menu-link px-3 btnItemEdit" keyID="@item.RequestId">@Localize.Localize("ADD_ITEMS")</a>
                                 </div>
-                                @if (item.Active)
+                                @if (item.Active)  
                                 {
                                     <div class="menu-item px-3">
                                         <a href="#" class="text-muted menu-link px-3 btnItemDelete" keyID="@item.RequestId" delete="1"
@@ -231,7 +231,7 @@
             debugger
             var modID = $(this).attr('keyID')
             var url = $("#hidManagePageUrl").val() + "?id=" + modID + "&mode=edit"
-            top.showPopup("Update Department", url, 600, 240, window.frameElement.id);
+            window.location.href = url;
             return false;
         });
     });

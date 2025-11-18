@@ -11,5 +11,7 @@ namespace MetroVMS.Services.Interface
         ResponseEntity<UserViewModel> GetUserbyId(long userId);
         Task<ResponseEntity<UserViewModel>> UpdateUser(UserViewModel model);
         ResponseEntity<string> ExportUserDatatoExcel(string search, long? statusid, long? Roleid, DateTime? PasswordExpirydateFrom, DateTime? PasswordExpirydateTo);
+        ResponseEntity<List<UserLoginLogViewModel>> GetLoginSessions(long? userId, DateTime? FromDate, DateTime? ToDate, long? RoleId);
+        ResponseEntity<string> ExportUserSessionDatatoExcel(string search, long? Roleid, DateTime? FromDate, DateTime? ToDate);
     }
 }

@@ -6,7 +6,7 @@ namespace MetroVMS.Services.Interface
 {
     public interface IItemRequestRepository
     {
-        Task<ResponseEntity<DepartmentViewModel>> CreateItemRequest(ItemRequestViewModel model);
+        Task<ResponseEntity<ItemRequestViewModel>> CreateItemRequest(ItemRequestViewModel model);
         ResponseEntity<List<ItemRequestViewModel>> GetAllItemRequests(long? Status, long RefNumberId, long DepNameId);
         ResponseEntity<ItemRequestViewModel> GetItemRequestById(long ReqId);
 

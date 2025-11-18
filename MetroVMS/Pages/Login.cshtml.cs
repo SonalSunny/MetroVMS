@@ -54,6 +54,9 @@ namespace MetroVMS.Pages
                         claims.Add(new Claim(ClaimTypes.Name, authResponse.returnData.UserId.ToString() ?? ""));
                         claims.Add(new Claim("EmployeeName", authResponse.returnData.EmployeeName ?? ""));
                         claims.Add(new Claim("LoginSessionId", authResponse.returnData.ActiveSessionId ?? ""));
+                        claims.Add(new Claim("Userid", authResponse.returnData.UserId.ToString()));
+                        //HttpContext.Session.SetString("SessionId", authResponse.returnData.ActiveSessionId);
+                        //HttpContext.Session.SetInt32("UserId", (int)authResponse.returnData.UserId);
                         var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                         var principal = new ClaimsPrincipal(claimsIdentity);
                         var authProperties = new AuthenticationProperties

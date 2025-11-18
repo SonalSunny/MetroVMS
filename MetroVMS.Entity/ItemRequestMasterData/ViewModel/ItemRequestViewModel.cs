@@ -9,7 +9,9 @@ namespace MetroVMS.Entity.ItemRequestMasterData.ViewModel
         public long? RequestedBy { get; set; }
         public string? RequestedByString { get; set; }
         public long? DepartmentId { get; set; }
+        [Required(ErrorMessage = "REQUIRED")]
         public DateTime? RequestDate { get; set; }
+        [Required(ErrorMessage = "REQUIRED")]
         public DateTime? DeliveryDate { get; set; }
         public bool IsBranchApproved { get; set; }
         public long? BranchApprovedUserID { get; set; }

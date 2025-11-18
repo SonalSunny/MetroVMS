@@ -7,6 +7,52 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="DBResources\ConfigurationResource.json" />
+    <None Remove="DBResources\LookupResource.json" />
+    <None Remove="DBResources\MenuResources.json" />
+    <None Remove="DBResources\ProjectConfigurationResources.json" />
+    <None Remove="DBResources\RoleResource.json" />
+    <None Remove="DBResources\SharedResource.ar-AE.json" />
+    <None Remove="DBResources\SharedResource.en-US.json" />
+    <None Remove="DBResources\SharedResource.json" />
+    <None Remove="DBResources\UserResource.json" />
+    <None Remove="DBResources\WelcomeResource.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="DBResources\ConfigurationResource.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DBResources\LookupResource.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DBResources\MenuResources.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DBResources\ProjectConfigurationResources.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DBResources\RoleResource.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DBResources\SharedResource.ar-AE.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DBResources\SharedResource.en-US.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DBResources\SharedResource.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DBResources\UserResource.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DBResources\WelcomeResource.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="ClosedXML" Version="0.104.2" />
     <PackageReference Include="Microsoft.AspNetCore.Html.Abstractions" Version="2.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor" Version="2.3.0" />
@@ -15,10 +61,6 @@
   <ItemGroup>
     <ProjectReference Include="..\MetroVMS.DataAccess\MetroVMS.DataAccess.csproj" />
     <ProjectReference Include="..\MetroVMS.Entity\MetroVMS.Entity.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="DBResources\" />
   </ItemGroup>
 
 </Project>

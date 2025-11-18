@@ -1,7 +1,9 @@
 ﻿@page
-@model MetroVMS.Pages.MaterialRequest.ManageModel
+@model MetroVMS.Pages.ProjectConfiguration.ManageModel
 @using MetroVMS.Localization
 @using MetroVMS.Models.PageModels
+@{
+}
 @{
     Layout = "_LayoutStandaloneContent";
 }
@@ -20,47 +22,44 @@
                         </div>
                         <button type="button" class="btn-close position-absolute top-50 end-0 translate-middle-y me-3" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
+
                 }
             </div>
             <input type="hidden" asp-for="_formMode" />
-            <input type="hidden" asp-for="inputModel.RequestId" />
-            @* <input type="hidden" asp-for="inputModel.loggedinUserId" value="@User?.FindFirst("Userid")?.Value" /> *@
+            <input type="hidden" asp-for="inputModel.ConfigId" />
             <div class="row">
                 <div class="col-12 mb-5">
                     <div class="form-group">
-                        <label class="required form-label">Request Date</label>
-                        <input asp-for="inputModel.RequestDate" class="form-control form-control-sm" type="date" placeholder="Select Request Date" />
-                        <span asp-validation-for="inputModel.RequestDate" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-12 mb-5">
-                    <div class="form-group">
-                        <label class="required form-label">Delivery Date</label>
-                        <input asp-for="inputModel.DeliveryDate" class="form-control form-control-sm" type="date" placeholder="Select Delivery Date"></input>
-                        <span asp-validation-for="inputModel.DeliveryDate" class="text-danger"></span>
-                    </div>
-                </div>
-            </div>
-            @if(!Model.formMode.Equals(FormModeEnum.add))
-            {
-                
-            }
-            <div class="card-footer text-end fixed-bottom bg-light">
-                <div class="row">
-                    <div class="col-6 text-start">
-                        <button type="button" class="btn btn-secondary btn-flat btn-sm" id="btnClear"><i class="fas fa-times"></i>  Clear</button>
+                        <label class="fs-6 fw-semibold mb-2">@Localize.Localize("CONFIG_VALUE")</label>
+
+                        <input asp-for="inputModel.Value" class="form-control form-control-sm"  />
+                        <span asp-validation-for="inputModel.Value" class="text-danger"></span>
 
                     </div>
-                    <div class="col-6 text-end">
-                        <button type="submit" name="btnSubmit" value="btnSave" class="btn btn-primary btn-flat btn-sm btn-req-loader"><i class="far fa-save"></i> Save</button>
-                        <button type="submit" name="btnSubmit" id="btnRefresh" value="btnRefresh" class="btn btn-outline-primary btn-sm d-none btn-req-loader" formnovalidate="formnovalidate">btnRefresh</button>
+                </div>
+                    <div class="col-12 mb-5">
+                        <div class="form-group">
+                            <label class="fs-6 fw-semibold mb-2">@Localize.Localize("CONFIG_DESCRIPTION")</label>
+                        <textarea asp-for="inputModel.Description" class="form-control form-control-sm" rows="2" cols="78" style="resize: both;" placeholder="Enter Description"></textarea>
+                       @*  <span asp-validation-for="inputModel.Description" class="text-danger"></span> *@
+                        </div>
                     </div>
                 </div>
-            </div>
+                <div class="card-footer text-end fixed-bottom bg-light">
+                    <div class="row">
+                        <div class="col-6 text-start">
+                        <button type="button" class="btn btn-secondary btn-flat btn-sm" id="btnClear"><i class="fas fa-times"></i>  Clear</button>
+
+                        </div>
+                        <div class="col-6 text-end">
+                            <button type="submit" name="btnSubmit" value="btnSave" class="btn btn-primary btn-flat btn-sm btn-req-loader"><i class="far fa-save"></i> Save</button>
+                            <button type="submit" name="btnSubmit" id="btnRefresh" value="btnRefresh" class="btn btn-outline-primary btn-sm d-none btn-req-loader" formnovalidate="formnovalidate">btnRefresh</button>
+                        </div>
+                    </div>
+                </div>
         </div>
     </div>
 </form>
-
 @section scripts {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
@@ -70,7 +69,7 @@
             $("#btnClear").click(function () {
                 $("#crudForm")[0].reset(); // Reset the form fields
 
-                $("#inputModel_DepartmentName").val("");
+                $("#inputModel_Value").val("");
                 $("#inputModel_Description").val("");
             });
             top.hidePageLoader();
@@ -93,7 +92,6 @@
                 timer: 1500
             })
             top.hidePopupWithRefresh('btnRefresh');
-            setTimeout(() => window.location.href = '/MaterialRequest/Index', 1500);
         }
     </script>
 

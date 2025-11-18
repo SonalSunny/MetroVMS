@@ -1,0 +1,215 @@
+{
+  "Module": "Menu",
+  "Translations": [
+    {
+      "Name": "MENU_HOME",
+      "Description": "Home",
+      "Localizations": [
+        {
+          "Culture": "ar-AE",
+          "Value": "بيت"
+        },
+        {
+          "Culture": "en-US",
+          "Value": "Home"
+        }
+      ]
+    },
+    {
+      "Name": "MENU_REPORT_AND_ANALYSIS",
+      "Description": "Report And Analysis",
+      "Localizations": [
+        {
+          "Culture": "ar-AE",
+          "Value": "التقرير والتحليل"
+        },
+        {
+          "Culture": "en-US",
+          "Value": "Report And Analysis"
+        }
+      ]
+    },
+    {
+      "Name": "DISPlAY_DASHBOARD",
+      "Description": "Display Dashboard",
+      "Localizations": [
+        {
+          "Culture": "ar-AE",
+          "Value": "عرض لوحة القيادة"
+        },
+        {
+          "Culture": "en-US",
+          "Value": "Display Dashboard"
+        }
+      ]
+    },
+    {
+      "Name": "MENU_USER_LOGIN_LOG",
+      "Description": "User Login Log",
+      "Localizations": [
+        {
+          "Culture": "ar-AE",
+          "Value": "سجل دخول المستخدم"
+        },
+        {
+          "Culture": "en-US",
+          "Value": "User Login Log"
+        }
+      ]
+    },
+    {
+      "Name": "MENU_MASTER",
+      "Description": "Master Data Entry",
+      "Localizations": [
+        {
+          "Culture": "ar-AE",
+          "Value": "إدخال البيانات الرئيسية"
+        },
+        {
+          "Culture": "en-US",
+          "Value": "Master Data Entry"
+        }
+      ]
+    },
+    {
+      "Name": "MENU_USER_MASTER",
+      "Description": "User Master",
+      "Localizations": [
+        {
+          "Culture": "ar-AE",
+          "Value": "سيد المستخدم"
+        },
+        {
+          "Culture": "en-US",
+          "Value": "User Master"
+        }
+      ]
+    },
+    {
+      "Name": "MENU_ROLES",
+      "Description": "Roles",
+      "Localizations": [
+        {
+          "Culture": "ar-AE",
+          "Value": "الأدوار"
+        },
+        {
+          "Culture": "en-US",
+          "Value": "Roles"
+        }
+      ]
+    },
+    {
+      "Name": "MENU_LOOKUPMASTER",
+      "Description": "Lookup Master",
+      "Localizations": [
+        {
+          "Culture": "ar-AE",
+          "Value": "سيد البحث"
+        },
+        {
+          "Culture": "en-US",
+          "Value": "Lookup Master"
+        }
+      ]
+    },
+    {
+      "Name": "BRANCH",
+      "Description": "Branch Master",
+      "Localizations": [
+        {
+          "Culture": "ar-AE",
+          "Value": "فرع"
+        },
+        {
+          "Culture": "en-US",
+          "Value": "Branch"
+        }
+      ]
+    },
+    {
+      "Name": "DEVICE",
+      "Description": "Device Master",
+      "Localizations": [
+        {
+          "Culture": "ar-AE",
+          "Value": "جهاز"
+        },
+        {
+          "Culture": "en-US",
+          "Value": "Device"
+        }
+      ]
+    },
+    {
+      "Name": "MEDIA",
+      "Description": "Media Master",
+      "Localizations": [
+        {
+          "Culture": "ar-AE",
+          "Value": "وسائط"
+        },
+        {
+          "Culture": "en-US",
+          "Value": "Media"
+        }
+      ]
+    },
+    {
+      "Name": "MENU_SETUP_AND_CONFIQ",
+      "Description": "Setup & Configuration",
+      "Localizations": [
+        {
+          "Culture": "ar-AE",
+          "Value": "الإعداد والتكوين"
+        },
+        {
+          "Culture": "en-US",
+          "Value": "Setup & Configuration"
+        }
+      ]
+    },
+    {
+      "Name": "MENU_TRANSLATION",
+      "Description": "Translation",
+      "Localizations": [
+        {
+          "Culture": "ar-AE",
+          "Value": "ترجمة"
+        },
+        {
+          "Culture": "en-US",
+          "Value": "Translation"
+        }
+      ]
+    },
+    {
+      "Name": "MENU_PROJECT_CONFIQ",
+      "Description": "Project Configuration ",
+      "Localizations": [
+        {
+          "Culture": "ar-AE",
+          "Value": "تكوين المشروع"
+        },
+        {
+          "Culture": "en-US",
+          "Value": "Project Configuration"
+        }
+      ]
+    },
+    {
+      "Name": "MENU_USER_ROLES",
+      "Description": "User Roles - Modules Access",
+      "Localizations": [
+        {
+          "Culture": "ar-AE",
+          "Value": "أدوار المستخدم - الوصول إلى الوحدة النمطية"
+        },
+        {
+          "Culture": "en-US",
+          "Value": "User Roles-Module Access"
+        }
+      ]
+    }
+  ]
+}

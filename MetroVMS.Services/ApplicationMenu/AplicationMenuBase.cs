@@ -1,5 +1,4 @@
-﻿using MetroVMS.Services.ApplicationMenu.CoreModuleMenus;
-using MetroVMS.Entity.MenuManagement.DTO;
+﻿using MetroVMS.Entity.MenuManagement.DTO;
 using MetroVMS.Services.ApplicationMenu.CoreModuleMenus;
 
 namespace MetroVMS.Services.ApplicationMenu
@@ -29,9 +28,10 @@ namespace MetroVMS.Services.ApplicationMenu
             objMMenu1.Menus.AddRange(AppointmentsMenu.GetAppointmentsMenu());
             objMMenu1.Menus.AddRange(MeetingRoomMenu.GetMeetingRoomMenu());
             objMMenu1.Menus.AddRange(StaffINandOUTMenu.GetStaffINandOUTMenu());
-
             objMMenu1.Menus.AddRange(MasterMenus.GetMasterMenu());
             objMMenu1.Menus.AddRange(ReportMenu.GetReportMenu());
+            objMMenu1.Menus.AddRange(ConfiguarationMenus.GetConfiguarationMenu());
+            objMMenu1.Menus.AddRange(ReportAndAnalysisMenus.GetReportAndAnalysisMenu());
 
 
             //objMMenu1.Menus.Add(new AppMenu()

@@ -38,8 +38,8 @@ namespace MetroVMS.Startup
                     };
                 };
             });
-            services.AddRazorPages();
 
+            services.AddRazorPages();
             services.RegisterDBContext(Configuration);
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

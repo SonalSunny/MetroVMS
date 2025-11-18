@@ -1,13 +1,9 @@
-﻿using ClosedXML.Excel;
-using MetroVMS.DataAccess;
+﻿using MetroVMS.DataAccess;
 using MetroVMS.Entity;
-using MetroVMS.Entity.DepartmentMaster.ViewModel;
 using MetroVMS.Entity.ItemRequestMasterData.DTO;
 using MetroVMS.Entity.ItemRequestMasterData.ViewModel;
 using MetroVMS.Services.Interface;
 using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
-using System.Net;
 using System.Security.Claims;
 
 namespace MetroVMS.Services.Repository
@@ -21,9 +17,11 @@ namespace MetroVMS.Services.Repository
 
 
 
-        public ItemRequestRepository(MetroVMSDBContext skakErpDBContext, IHttpContextAccessor httpContextAccessor)
+        public ItemRequestRepository(MetroVMSDBContext metroVMSDBContext, IHttpContextAccessor httpContextAccessor)
         {
-            this._dbContext = skakErpDBContext;
+            this._dbContext = metroVMSDBContext;
+            _httpContextAccessor = httpContextAccessor;
+
             try
             {
                 claimsPrincipal = _httpContextAccessor?.HttpContext?.User;
@@ -49,18 +47,24 @@ namespace MetroVMS.Services.Repository
             }
         }
 
-        public async Task<ResponseEntity<DepartmentViewModel>> CreateItemRequest(ItemRequestViewModel model)
+        public async Task<ResponseEntity<ItemRequestViewModel>> CreateItemRequest(ItemRequestViewModel model)
         {
 
-            var Returndata = new ResponseEntity<DepartmentViewModel>();
+            var Returndata = new ResponseEntity<ItemRequestViewModel>();
             try
             {
                 var Existingata = _dbContext.ItemRequestMasters.Any(i => i.RequestId == model.RequestId);
 
-                if (model == null)
+                if (!model.RequestDate.HasValue || !model.DeliveryDate.HasValue)
                 {
                     Returndata.transactionStatus = System.Net.HttpStatusCode.InternalServerError;
                     Returndata.returnMessage = "Please Enter The Required Fields";
+                    return Returndata;
+                }
+                else if(model.RequestDate > model.DeliveryDate)
+                {
+                    Returndata.transactionStatus = System.Net.HttpStatusCode.InternalServerError;
+                    Returndata.returnMessage = "Delivery Date Must be Greater Then Request Date";
                     return Returndata;
                 }
                 else
@@ -238,7 +242,7 @@ namespace MetroVMS.Services.Repository
                     DepartmentId = c.DepartmentId,
                     RequestId = c.RequestId,
                     RequestNo = c.RequestNo,
-                    RequestDate =c.RequestDate,
+                    RequestDate = c.RequestDate,
                     DeliveryDate = c.DeliveryDate,
                     RequestedBy = c.RequestedBy,
                     RequestedByString = c.RequestedBy != null ? _dbContext.Users.FirstOrDefault(e => e.UserId == c.RequestedBy).UserName : "N/A",

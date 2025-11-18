@@ -8,11 +8,11 @@ namespace MetroVMS.Services.Interface
         //List<DropDownViewModel> GetDesignations();
         //List<DropDownViewModel> GetEmployee();
         List<DropDownViewModel> GetRole();
+        List<DropDownViewModel> GetLookupTypeList();
         //List<DropDownViewModel> GetDepartmentRefNoList();
         //List<DropDownViewModel> GetDepartmentNameList();
         //List<DropDownViewModel> GetDesignationRefNoList();
         //List<DropDownViewModel> GetDesignationNameList();
-        //List<DropDownViewModel> GetLookupTypeList();
         //List<DropDownViewModel> GetPayrollData();
         //List<DropDownViewModel> GetLookupMasterList();
         //List<DropDownViewModel> GetTaskCategoryList();

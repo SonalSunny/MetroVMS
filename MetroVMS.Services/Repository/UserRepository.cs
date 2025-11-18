@@ -149,7 +149,7 @@ namespace MetroVMS.Services.Repository
             catch (Exception ex)
             {
                 retModel.transactionStatus = System.Net.HttpStatusCode.InternalServerError;
-                retModel.returnMessage = ex.Message; 
+                retModel.returnMessage = ex.Message;
             }
 
             return retModel;
@@ -317,6 +317,172 @@ namespace MetroVMS.Services.Repository
             catch (Exception ex)
             {
                 retModel.transactionStatus = HttpStatusCode.InternalServerError;
+            }
+            return retModel;
+        }
+        public ResponseEntity<List<UserLoginLogViewModel>> MetroVMS(long? userId, DateTime? FromDate, DateTime? ToDate, long? RoleId)
+        {
+            var retModel = new ResponseEntity<List<UserLoginLogViewModel>>();
+            try
+            {
+                var objLogs = _dbContext.UserSessions/*Where(c => c.LoggedInUserId == userId)*/
+                    .Include(c => c.User)
+                    .ThenInclude(u => u.Role)
+                    .Select(c => new
+                    {
+                        SessionInfo = c,
+                        loggedinDate = c.LoginDateTime,
+                        loggedOutDate = c.LogoutDateTime,
+                        Username = c.User.UserName,
+                        UserRole = c.User.Role.RoleName,
+                        roleId = c.User.RoleId,
+                    });
+
+                objLogs = objLogs.OrderByDescending(i => i.loggedinDate);
+
+                if (RoleId.HasValue)
+                {
+                    objLogs = objLogs.Where(i => i.roleId == RoleId);
+                }
+
+                if (FromDate.HasValue)
+                {
+                    objLogs = objLogs.Where(c => c.loggedinDate >= FromDate);
+                }
+
+                if (ToDate.HasValue)
+                {
+                    objLogs = objLogs.Where(c => c.loggedinDate <= ToDate);
+                }
+
+                objLogs = objLogs.OrderByDescending(c => c.SessionInfo.LoginDateTime);
+
+                var objLogsQuery = objLogs.ToList();
+
+                var objLogList = objLogsQuery.Select(c => new UserLoginLogViewModel()
+                {
+                    RoleName = c.UserRole,
+                    UserName = c.Username,
+                    LoginDateTime = c.SessionInfo.LoginDateTime,
+                    SessionId = c.SessionInfo.SessionId,
+                    LogoutDateTime = c.loggedOutDate != null ? c.loggedOutDate.Value : null,
+                }).ToList();
+                retModel.transactionStatus = System.Net.HttpStatusCode.OK;
+                retModel.returnData = objLogList;
+            }
+            catch (Exception ex)
+            {
+                retModel.transactionStatus = System.Net.HttpStatusCode.InternalServerError;
+                retModel.returnMessage = "Server Error";
+            }
+            return retModel;
+        }
+        public ResponseEntity<string> ExportUserSessionDatatoExcel(string search, long? Roleid, DateTime? FromDate, DateTime? ToDate)
+        {
+            var retModel = new ResponseEntity<string>();
+            try
+            {
+                var objData = MetroVMS(0, FromDate, ToDate, Roleid);
+
+                if (objData.transactionStatus == HttpStatusCode.OK)
+                {
+                    using (var workbook = new XLWorkbook())
+                    {
+                        var worksheet = workbook.Worksheets.Add("Login Session");
+                        worksheet.Cell(1, 1).Value = "Sl No";
+                        worksheet.Cell(1, 2).Value = "Employee Name";
+                        worksheet.Cell(1, 3).Value = "Employee Number";
+                        worksheet.Cell(1, 4).Value = "Role";
+                        worksheet.Cell(1, 5).Value = "LogIn Time";
+                        worksheet.Cell(1, 6).Value = "LogOut Time";
+
+                        var headerRow = worksheet.Row(1);
+                        headerRow.Style.Font.Bold = true;
+                        headerRow.Style.Fill.BackgroundColor = XLColor.LightGray;
+
+                        for (int i = 0; i < objData.returnData.Count; i++)
+                        {
+                            worksheet.Cell(i + 2, 1).Value = i + 1;
+                            worksheet.Cell(i + 2, 2).Value = objData.returnData[i].EmployeeName;
+                            worksheet.Cell(i + 2, 3).Value = objData.returnData[i].EmployeeCode;
+                            worksheet.Cell(i + 2, 4).Value = objData.returnData[i].RoleName;
+                            worksheet.Cell(i + 2, 5).Value = objData.returnData[i].LoginDateTime.ToString();
+                            worksheet.Cell(i + 2, 6).Value = objData.returnData[i].LogoutDateTime.ToString();
+                        }
+
+                        using (var stream = new MemoryStream())
+                        {
+                            workbook.SaveAs(stream);
+                            stream.Position = 0;
+                            byte[] fileBytes = stream.ToArray();
+                            retModel.returnData = GenericUtilities.SetReportData(fileBytes, ".xlsx");
+                            retModel.transactionStatus = HttpStatusCode.OK;
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                retModel.transactionStatus = HttpStatusCode.InternalServerError;
+            }
+            return retModel;
+        }
+
+        public ResponseEntity<List<UserLoginLogViewModel>> GetLoginSessions(long? userId, DateTime? FromDate, DateTime? ToDate, long? RoleId)
+        {
+            var retModel = new ResponseEntity<List<UserLoginLogViewModel>>();
+            try
+            {
+                var objLogs = _dbContext.UserSessions/*Where(c => c.LoggedInUserId == userId)*/
+                    .Include(c => c.User)
+                    .ThenInclude(u => u.Role)
+                    .Select(c => new
+                    {
+                        SessionInfo = c,
+                        loggedinDate = c.LoginDateTime,
+                        loggedOutDate = c.LogoutDateTime,
+                        Username = c.User.UserName,
+                        UserRole = c.User.Role.RoleName,
+                        roleId = c.User.RoleId,
+                    });
+
+                objLogs = objLogs.OrderByDescending(i => i.loggedinDate);
+
+                if (RoleId.HasValue)
+                {
+                    objLogs = objLogs.Where(i => i.roleId == RoleId);
+                }
+
+                if (FromDate.HasValue)
+                {
+                    objLogs = objLogs.Where(c => c.loggedinDate >= FromDate);
+                }
+
+                if (ToDate.HasValue)
+                {
+                    objLogs = objLogs.Where(c => c.loggedinDate <= ToDate);
+                }
+
+                objLogs = objLogs.OrderByDescending(c => c.SessionInfo.LoginDateTime);
+
+                var objLogsQuery = objLogs.ToList();
+
+                var objLogList = objLogsQuery.Select(c => new UserLoginLogViewModel()
+                {
+                    RoleName = c.UserRole,
+                    UserName = c.Username,
+                    LoginDateTime = c.SessionInfo.LoginDateTime,
+                    SessionId = c.SessionInfo.SessionId,
+                    LogoutDateTime = c.loggedOutDate != null ? c.loggedOutDate.Value : null,
+                }).ToList();
+                retModel.transactionStatus = System.Net.HttpStatusCode.OK;
+                retModel.returnData = objLogList;
+            }
+            catch (Exception ex)
+            {
+                retModel.transactionStatus = System.Net.HttpStatusCode.InternalServerError;
+                retModel.returnMessage = "Server Error";
             }
             return retModel;
         }

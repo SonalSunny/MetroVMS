@@ -19,9 +19,6 @@ namespace MetroVMS.Services.Repository
         private readonly IHttpContextAccessor _httpContextAccessor;
         ClaimsPrincipal claimsPrincipal = null;
         long? loggedInUser = null;
-        //public readonly UserClaims _UserClaims;
-        //public readonly Logger _Logger;
-        //public readonly ILoggerRepository _loggerRepository;
 
 
         public MenuRepository(MetroVMSDBContext context, IMemoryCache cache,
@@ -30,9 +27,7 @@ namespace MetroVMS.Services.Repository
             _cache = cache;
             _context = context;
             _httpContextAccessor = httpContextAccessor;
-            //_UserClaims = userClaims;
-            //_Logger = logger;
-            //_loggerRepository = loggerRepository;
+
             try
             {
                 claimsPrincipal = _httpContextAccessor?.HttpContext?.User as ClaimsPrincipal;

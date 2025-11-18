@@ -105,8 +105,8 @@ namespace MetroVMS.Entity.MenuManagement.DTO
 
         #region DataEntryMaster
         public const int DataEntryMaster = 7;
-       
-    public const int Employees = 701;
+
+        public const int Employees = 701;
         public const int UserMaster = 702;
         public const int DepartmentMaster = 703;
         public const int MeetingRoomMaster = 720;
@@ -183,22 +183,22 @@ namespace MetroVMS.Entity.MenuManagement.DTO
         #region VisitorManagement
         public const int VisitorManagement = 28;
         public const int VisitorRegister = 2801;
-        public const int VisitorLog= 2802;
+        public const int VisitorLog = 2802;
 
         #endregion
 
         #region Appointments
         public const int Appointments = 29;
         public const int NewAppointmentRequest = 2901;
-        public const int  ApproveRequest= 2902;
-        public const int  MyAppointments = 2903;
+        public const int ApproveRequest = 2902;
+        public const int MyAppointments = 2903;
         #endregion
 
         #region MeetingRoom
         public const int MeetingRoom = 30;
         public const int BookMeetingRoom = 3001;
         public const int MyMeetings = 3002;
-      
+
         #endregion
         #region StaffINandOut
         public const int StaffINandOut = 31;
@@ -233,12 +233,4 @@ namespace MetroVMS.Entity.MenuManagement.DTO
         public const int Delivery = 3404;
         #endregion
     }
-
-
-
-
-
-
-
-
 }

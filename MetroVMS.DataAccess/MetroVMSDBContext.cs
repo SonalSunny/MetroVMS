@@ -1,4 +1,5 @@
-﻿using MetroVMS.Entity;
+﻿using MetroVMS.Entity.Identity.DTO;
+using MetroVMS.Entity;
 using MetroVMS.Entity.BranchMaster.DTO;
 using MetroVMS.Entity.DepartmentMaster.DTO;
 using MetroVMS.Entity.EmployeeManagement.DTO;
@@ -6,6 +7,7 @@ using MetroVMS.Entity.Identity.DTO;
 using MetroVMS.Entity.ItemMaster.DTO;
 using MetroVMS.Entity.ItemRequestMasterData.DTO;
 using MetroVMS.Entity.Localization.DTO;
+using MetroVMS.Entity.ProjectConfiguration.DTO;
 using MetroVMS.Entity.RoleData.DTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
@@ -47,7 +49,9 @@ namespace MetroVMS.DataAccess
         public DbSet<Branch> Branches { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<ItemRequestMaster> ItemRequestMasters { get; set; }
-
+        public DbSet<ProjectConfiguration> ProjectConfigurations { get; set; }
+        public DbSet<LookupMaster> LookupMasters { get; set; }
+        public DbSet<LookUpTypeMaster> LookupTypeMasters { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
